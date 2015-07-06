@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes
+END
+hibernate.properties
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/hibernate.properties
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/hibernate.cfg.xml
+END

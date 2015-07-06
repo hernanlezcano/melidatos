@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF
+END
+mvc-dispatcher-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/mvc-dispatcher-servlet.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/web.xml
+END

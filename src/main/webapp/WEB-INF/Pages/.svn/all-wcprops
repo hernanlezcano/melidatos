@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages
+END
+pageAdminHistory.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/pageAdminHistory.jsp
+END
+IndexInterface.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/IndexInterface.jsp
+END
+pageAdminLogin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/pageAdminLogin.jsp
+END
+InterfaceVieja.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/InterfaceVieja.jsp
+END
+PrincipalInterface.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/PrincipalInterface.jsp
+END
+indexViejo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3/trunk/src/main/webapp/WEB-INF/Pages/indexViejo.jsp
+END

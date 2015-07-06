@@ -1,0 +1,233 @@
+package daoClasses;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import persistanceClasses.Itemprices;
+import persistanceClasses.Records;
+import persistanceFactory.HibernateUtils;
+
+
+public class DAOData_MySQL{
+	
+	private static DAOData_MySQL instance;
+
+	private DAOData_MySQL() {
+	}
+
+	public static DAOData_MySQL getInstance() {
+
+		if (instance == null) {
+			instance = new DAOData_MySQL();
+		}
+
+		return instance;
+
+	}
+	
+	//For the moment this method returns a list of all the matches of the word seted by the user, later its gona be refined.
+	public List getLastSavedProductsById(String descProd){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		
+		// Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("Select idSon from Producttree where descSon = :name AND date in (select max(date) from Producttree WHERE descSon = :name)");
+		query.setParameter("name", descProd);
+		List list = query.list();
+		session.close();
+		
+		return list;
+	}
+	
+	public List<Object[]> getWordsSuggested(String word){
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		// Start a transaction
+//		session.beginTransaction();
+//		Query query = session.createQuery("Select descFather, descSon, idFather from Producttree where descSon like :search AND date in (select max(date) from Producttree WHERE descSon like :search) GROUP BY descSon");
+//		query.setParameter("search", '%' + word + '%');
+//		List <Object[]> list = query.list();
+//		
+		session.beginTransaction();
+		Query query = session.createQuery("Select descFather, descSon, idFather from Producttree GROUP BY descSon");
+		List <Object[]> list = query.list();
+		session.close();
+		
+		return list;
+	}
+	
+	//This function will search in database by product description in Records table and Itemprices, and return the data of avg, max and min of each date
+	public List<Object[]> getItemPricesHistoriesByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT R.dateRecord, avg(IT.avgPrices), max(IT.maxPrices), min(IT.minPrices) " +
+										  "FROM Itemprices as IT INNER JOIN IT.records as R " +
+										  "where R.productId = :id group by dateRecord");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+	}
+
+	public List <Object[]> getLastSavedItemPriceByProductId(String productId){
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT avg(IT.avgPrices), max(IT.maxPrices), min(IT.minPrices) " +
+										  "FROM Itemprices as IT JOIN IT.records as R " +
+										  "WHERE R.productId = :id AND R.dateRecord IN (SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id)");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+	}
+	
+	public List <Object[]> getStatesAvgPriceByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT SD.state.descState, SD.avgPrice " +
+				  							"FROM Statesdata as SD INNER JOIN SD.records as R " +
+				  							"WHERE R.productId = :id AND R.dateRecord IN " +
+				  							"(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) " +
+				  							"GROUP BY SD.state.descState " +
+				  							"HAVING SD.avgPrice > 0");
+//		SELECT S.descState, SD.avgPrice
+//		FROM statesdata as SD, records as R, state as S
+//		WHERE SD.idRecord = R.idRecord AND 
+//		      SD.idState = S.idState AND
+//		      R.productId = 'MLA8321' AND R.dateRecord IN (SELECT max(R.dateRecord)
+//		                                                   FROM records as R 
+//		                                                   WHERE R.productId = 'MLA8321')
+//		GROUP BY S.descState
+//		HAVING SD.avgPrice > 0
+		
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+	}
+	
+	public List <Object[]> getActualStatesOfferByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT SD.state.descState, sum(SD.offerQuantity) " +
+										  "FROM Statesdata as SD INNER JOIN SD.records as R " +
+										  "WHERE R.productId = :id AND R.dateRecord IN " +
+										  "(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) " +
+										  "GROUP BY SD.state.descState");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+	}
+	
+	public List <Object[]> getActualStatesSoldByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT SD.state.descState, sum(SD.soldQuantity) " +
+				  							"FROM Statesdata as SD INNER JOIN SD.records as R " +
+				  							"WHERE R.productId = :id AND R.dateRecord IN " +
+				  							"(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) " +
+				  							"GROUP BY SD.state.descState");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+	}
+	
+	public List <Object[]> getOfferQuantitysHistoriesByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT R.dateRecord, sum(IQ.offerQuantitys) " +
+				  							"FROM Itemsquantitys as IQ INNER JOIN IQ.records as R " +
+				  							"WHERE R.productId= :id " +
+				  							"GROUP BY R.dateRecord");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+		
+	}
+	
+	public List <Object[]> getDateStopQuantitysByProductId(String productId){
+	
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT SQ.date, SQ.stopQuantity " +
+				  							"FROM Datestopquantitys as SQ INNER JOIN SQ.records as R " +
+				  							"WHERE R.productId= :id AND R.dateRecord IN " +
+				  							"(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) " +
+				  							"ORDER BY SQ.date");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+		
+	}
+	
+	public List <Object[]> getAceptsMercadoPagoByProductId(String productId){
+	
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT MP.acceptsMercadoPago, MP.noMercadoPago " +
+				  							"FROM Mercadopago as MP INNER JOIN MP.records as R " +
+				  							"WHERE R.productId= :id AND R.dateRecord IN " +
+				  							"(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) "
+				  							);
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+		
+	}
+	public List <Object[]> getSoldQuantitysHistoriesByProductId(String productId){
+		
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		//Start a transaction
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT R.dateRecord, sum(IQ.soldQuantitys) " +
+				  							"FROM Itemsquantitys as IQ JOIN IQ.records as R " +
+				  							"WHERE R.productId= :id " +
+				  							"GROUP BY R.dateRecord");
+		query.setParameter("id", productId);
+		List <Object[]> list = query.list();
+		
+		session.close();
+		
+		return list;
+		
+	}
+}

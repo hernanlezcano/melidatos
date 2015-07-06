@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/daoClasses
+END
+DAOProduct_MySQL.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/daoClasses/DAOProduct_MySQL.class
+END
+DAORecords_MySQL.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/daoClasses/DAORecords_MySQL.class
+END
+DAOUsers_MySQL.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/daoClasses/DAOUsers_MySQL.class
+END
+DAO.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/daoClasses/DAO.class
+END

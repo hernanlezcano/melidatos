@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage
+END
+WrapperItems$Result$Seller_address$State.class
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Seller_address$State.class
+END
+WrapperItems$Result$Shipping.class
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Shipping.class
+END
+WrapperItems$Paging.class
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Paging.class
+END
+WrapperItems$Result$Seller_address$Country.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Seller_address$Country.class
+END
+WrapperItems$Result$Address.class
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Address.class
+END
+WrapperItems$Result$Seller.class
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Seller.class
+END
+WrapperItems$Result$Seller_address$City.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Seller_address$City.class
+END
+WrapperItems.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems.class
+END
+WrapperItems$Result.class
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result.class
+END
+WrapperItems$Result$Seller_address.class
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Seller_address.class
+END
+WrapperItems$Result$Installments.class
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/wrapperPackage/WrapperItems$Result$Installments.class
+END

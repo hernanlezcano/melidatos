@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/src/main/Java/contextManagement
+END
+CounterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/src/main/Java/contextManagement/CounterService.java
+END
+UserSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/src/main/Java/contextManagement/UserSession.java
+END
+SessionCounterListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/src/main/Java/contextManagement/SessionCounterListener.java
+END

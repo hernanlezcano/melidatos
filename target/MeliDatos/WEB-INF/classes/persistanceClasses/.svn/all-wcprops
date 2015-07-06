@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses
+END
+Producttree.class
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Producttree.class
+END
+State.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/State.class
+END
+Shipping.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Shipping.class
+END
+Users.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Users.class
+END
+Results.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Results.class
+END
+Country.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Country.class
+END
+Pricerecords.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Pricerecords.class
+END
+Address.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Address.class
+END
+Seller.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Seller.class
+END
+City.class
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/City.class
+END
+Querys.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Querys.class
+END
+SellerAddress.class
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/SellerAddress.class
+END
+Installments.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/target/MeliDatos/WEB-INF/classes/persistanceClasses/Installments.class
+END
