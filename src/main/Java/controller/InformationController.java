@@ -107,18 +107,19 @@ public class InformationController {
 	@RequestMapping (value="InformationRequest", method = RequestMethod.GET)
 	public String informationRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		request.setAttribute("search",request.getParameter("search"));
-		System.out.println("informationRequest: " + request.getParameter("search"));
-		//UserSearchPreparation prepare = new UserSearchPreparation(request.getParameter("search"));
-		UserSearchPreparation prepare = UserSearchPreparation.getInstance();
-		String productId = prepare.searchProductIdByDescription(request.getParameter("search"));
 		
-		System.out.println(productId);
-		if(productId == null){
-			request.setAttribute("data",request.getParameter("search") + " - No se ha encontrado informacion");
+		request.setAttribute("project",request.getParameter("project"));
+		request.getAttribute("project-id");
+		System.out.println("informationRequest"  + request.getParameter("project-id"));
+
+
+		String productId = request.getParameter("project-id");
+		System.out.println("aca prineto la variable productId"  + productId);
+	
+		if(productId == ""){
+			request.setAttribute("data",request.getParameter("project") +  "- No se ha encontrado informacion");
 			return "IndexInterface";
 		}
-		
 		//Obtain the data of the prices kit
 		InformationKitOne informationKitOne = new InformationKitOne(productId);
 		
