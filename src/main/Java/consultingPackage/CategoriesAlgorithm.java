@@ -30,8 +30,7 @@ public class CategoriesAlgorithm extends TimerTask{
 	//This array will contain all the threads running
 	Thread [] threads;
 	int attempts;
-	
-	
+
 	public CategoriesAlgorithm(){
 		
 	}
@@ -45,15 +44,18 @@ public class CategoriesAlgorithm extends TimerTask{
 	public void getRootCategories(){
 		Response response;
 		date = new Date();
+		String [] countries = {"MLA","MLB","MLC"};
 		
 		JSONArray categoriesAllowed = Configurations.getInstance().getCategoriesAllowed();
 		
-		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories();
+		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
 		
+		System.out.println(categoriesJsonArray);
 		
+		/*
 		Iterator<String> iterator = categoriesJsonArray.iterator();
 		int i = 0;
-
+		
 		if(((JSONObject)categoriesAllowed.get(0)).get("id").equals("todos")){
 			threads = new Thread[categoriesJsonArray.size()];
 			while(iterator.hasNext()){
@@ -76,16 +78,15 @@ public class CategoriesAlgorithm extends TimerTask{
 						k++;
 					}
 				}
-				
 				i++;
-				
 			}
 		}
 		//carga todas las hebras que le ponga
 		for(int j=0;j<threads.length;j++){
 			threads[j].start();
 		}
-		//para q espere que termine todas las hebra antes de cerrar, si termina una no se cierra todo
+		
+		//para q espere que termine todas las hebras antes de cerrar, si termina una no se cierra todo
 		for(int j=0;j<threads.length;j++){
 			try {
 				threads[j].join();
@@ -96,9 +97,8 @@ public class CategoriesAlgorithm extends TimerTask{
 		}
 			
 		date = new Date();
-		
 		System.out.println("Termino de proceso: " + hourFormat.format(date));
-		
+		*/
 	}
 	
 	public class Category extends Thread{
@@ -122,6 +122,7 @@ public class CategoriesAlgorithm extends TimerTask{
 		
 		public void run(){
 			System.out.println("CategoriaId: " + jsonObject.get("id") + " ,Nombre: " + jsonObject.get("name"));
+			
 			fifoFathers.push((String) jsonObject.get("id"));
 			
 			while(fifoFathers.size() > 0){
@@ -148,13 +149,6 @@ public class CategoriesAlgorithm extends TimerTask{
 		
 		public void getChildrens(String categoryId){
 			
-//			try {
-				//Response response = m.get("/categories/"+ categoryId);
-				
-				//JSONParser parser = new JSONParser();
-				//System.out.println("Category: " + categoryId + ", Thread: " + Thread.currentThread().getId());
-				//Object obj = parser.parse(response.getResponseBody());
-				
 				JSONObject obj = ConsultAPI.getInstance().getCategoryJSON(categoryId);
 				//childrenJsonObject will contain the fathers at first level
 				if(obj == null){
@@ -162,16 +156,16 @@ public class CategoriesAlgorithm extends TimerTask{
 				}
 				JSONObject categoryJsonObject = (JSONObject) obj;
 				JSONArray childrens = (JSONArray) categoryJsonObject.get("children_categories");
-				//JSONArray childrens = (JSONArray) categoryJsonObject.get("path_from_root");
+				
 				//por cada uno de los children le concateno antes el pat from rut, si lo hago dentro del if dejo afuera todas las hojas
 				fifoChildrens.push(new String[]{(String) categoryJsonObject.get("id"),(String) categoryJsonObject.get("name")});
 				
 				if(childrens.size() > 0){
-					//System.out.println("barrio");
 					Iterator<String> iterator = childrens.iterator();
 					int i = 0;
 					while(iterator.hasNext()){
 						iterator.next();
+						
 						//Instance a children for each children in the category.
 						JSONObject children = (JSONObject) childrens.get(i);
 						fifoFathers.push((String) children.get("id"));
@@ -184,32 +178,6 @@ public class CategoriesAlgorithm extends TimerTask{
 					return;
 				}
 				
-//			} catch (MeliException e) {
-//				if(attempts <= 10000){
-//					try {
-//						Thread.sleep(1000);
-//					} catch (InterruptedException e1) {
-//						// TODO Auto-generated catch block
-//						getChildrens(categoryId);
-//						e1.printStackTrace();
-//					}
-//					System.out.println("new attempt: " + categoryId);
-//					attempts++;
-//					getChildrens(categoryId);
-//				}
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//				System.out.println("ParseException in category: " + categoryId + ", in Thread: " + Thread.currentThread().getId());
-//				return;
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				System.out.println("IOException in category: " + categoryId + ", in Thread: " + Thread.currentThread().getId());
-//				e.printStackTrace();
-//				return;
-//			}
 			return;
 		}
 		
@@ -246,7 +214,6 @@ public class CategoriesAlgorithm extends TimerTask{
 					this.obtainChildrensItems(fifoChildrens.get(i)[0],fifoChildrens.get(i)[1]);
 				}
 				
-				//System.out.println("Muerte " + Thread.currentThread().getName());
 				Thread.currentThread().interrupt();
 				return;
 			}
@@ -269,15 +236,12 @@ public class CategoriesAlgorithm extends TimerTask{
 				
 				double maxPrice = 0, minPrice = 0, averagePrice = 0, sumPrices = 0, soldQuantity = 0, offerQuantity = 0;
 				int count = 0;
-				//System.out.println("obtainMedian called, category: " + childrenId);
 				double median = new StadisticCalculation().obtainMedian(items);
-				//System.out.println("obtainMAD called, category: " + childrenId);
 				double MAD = new StadisticCalculation().obtainMAD(items);
 				
 				int acceptsMercadoPago = 0, noMercadoPago = 0;
 				
 				//Create a matrix to store the states quantitys of each item. 
-				//statesQuantitys[StateName, StateOfferQuantitys, StateSoldQuantitys, StateSumPrices, StateResultQuantity], arma una matris q cada una de la lienas tiene esta info
 				String [][] statesQuantitys = new String[25][5];
 				
 				//Load the states
@@ -517,8 +481,7 @@ public class CategoriesAlgorithm extends TimerTask{
 									statesQuantitys[24][4] = String.valueOf(Integer.valueOf(statesQuantitys[23][4]) + 1);
 									break;
 							}
-							
-							
+										
 							//If the date is not stored, create a new one and push into the stack
 							boolean isDateAlreadyStored = false;
 							for(int j = 0;j<stopQuantitys.size();j++){

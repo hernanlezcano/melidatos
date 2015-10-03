@@ -3,6 +3,7 @@ package consultingPackage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 import org.json.simple.JSONArray;
@@ -11,6 +12,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import wrapperPackage.WrapperItems;
+
 
 
 import com.mercadolibre.sdk.Meli;
@@ -76,32 +78,36 @@ public class ConsultAPI {
 			//e.printStackTrace();
 			category = null;
 		}
-		//System.out.println("Corriendo getCategoryJSON");
+		
 		return category;
 	}
 	
-	public ArrayList getRootCategories(){
+	//Function will recebe an array with the countries
+	public ArrayList getRootCategories(String[] countries){
 		Response response;
 		ArrayList categoriesJsonArray = null;
+
 		try {
-			response = m.get("/sites/MLA/categories");
-			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(response.getResponseBody());
-			categoriesJsonArray = (ArrayList) obj;
+			for(int i=0;i<countries.length;i++){
+				response = m.get("/sites/"+countries[i]+"/categories");
+				JSONParser parser = new JSONParser();
+				Object obj = parser.parse(response.getResponseBody());
+				categoriesJsonArray.addAll((ArrayList) obj);
+				
+				//Ver de aca que pasa -> como concatenar los arreglos
+				System.out.println(categoriesJsonArray);
+			}
 		} catch (MeliException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ParseException in root categories");
-			//e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("IOException in root categories ");
-			//e.printStackTrace();
 		}
 		
-		//System.out.println("Corriendo getRootCategoruies");
 		return categoriesJsonArray;
 	}
 	

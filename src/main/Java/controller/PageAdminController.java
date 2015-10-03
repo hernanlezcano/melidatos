@@ -27,7 +27,6 @@ import consultingPackage.ConsultAPI;
 import consultingPackage.ScheduleAlgorithm;
 import contextManagement.UserSession;
 import daoClasses.DAOUsers_MySQL;
-
 import utils.Login;
 
 @Controller
@@ -66,8 +65,8 @@ public class PageAdminController extends HttpServlet{
 		if(!checkUser(request.getSession().getId())){
 			return "pageAdminLogin";
 		}
-		
-		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories();
+		String [] countries = {"MLA","MLB","MLC"};
+		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
 		System.out.println(categoriesJsonArray);
 		
 		JSONArray arreglo = (JSONArray) categoriesJsonArray;

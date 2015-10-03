@@ -10,49 +10,7 @@
         <link type="text/css" rel="stylesheet" href="resources/assets/css/style.css">
         
 		<link rel="stylesheet" href="resources/jquery-ui.css">
-
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http: //html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if IE 7]>
-        <link type="text/css" rel="stylesheet" href="assets/Font-awesome/css/font-awesome-ie7.min.css"/>
-        <![endif]-->
-       
-       
-
-		 <script type="text/javascript">
-		function changeToKitOne(){
-				document.getElementById("span1").className="active";
-				document.getElementById("span2").className="";
-				document.getElementById("span3").className="";
-				document.getElementById("ActualPricesData").style.display = "inline";
-				document.getElementById("histogramaPrecio").style.display = "inline";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-			}
-		function changeNone(){
-				document.getElementById("search").focus();
-				document.getElementById("span1").className=" ";
-				document.getElementById("span2").className=" ";
-				document.getElementById("span3").className=" ";
-				document.getElementById("ActualPricesData").style.display = "none";
-				document.getElementById("histogramaPrecio").style.display = "none";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-			}		
-     	</script> 
-     	
-     	
+		
      	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
      	<script type="text/javascript">
@@ -73,8 +31,7 @@
      	
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>		
-		<script type="text/javascript">
-		
+		<script type="text/javascript">		
 	
 		$(document).ready(function() {
 			 function split( val ) {
@@ -111,7 +68,7 @@
                             terms.push( ui.item.father );
                             // add placeholder to get the comma-and-space at the end
                             terms.push( "" );
-                            this.value = terms.join( ", " );
+                            this.value = terms.join(", ");
                             
                             //$( "#project" ).val( ui.item.father);
                             $( "#project-id" ).val( ui.item.key);
@@ -143,10 +100,7 @@ i.linkin,   span.linkin{ color: #007bb6; }
 
    <!-- <body onload="changeNone()"> --> 
    <body>
-   		<div id="project-label">Seleccione el articulo:</div>
-		<input id="project" class="col-md-4">
-		<input id="project-id">		
-		<p id="project-description"></p>
+   		<!-- Aca estaba el codigo de los input -->
  
         <!-- BEGIN WRAP -->
         <div id="wrap">
@@ -211,12 +165,11 @@ i.linkin,   span.linkin{ color: #007bb6; }
 
                                 <form class="main-search" action="InformationRequest" method="get">
                                 
-                                    <input class="input-block-level" type="text" list="suggestions" id="search" onkeyup="suggest();" name="search"
-                                     placeholder="Buscar..." autocomplete="on">
-                                    <datalist id="suggestions" onclick="msj();">
-                                                  
-                                    </datalist>
-                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i>                                    </button>
+                                   	                     
+									<input class="input-block-level" type="text" id="project" name="project" class="col-md-4">
+									<input class="input-block-level" type="text" id="project-id" name="project-id">		
+									<p id="project-description"></p>                                    
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse" ><i class="icon-search"></i>                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -235,8 +188,8 @@ i.linkin,   span.linkin{ color: #007bb6; }
             
             <div align="center" style="vertical-align: middle;">
          
-         <                     <img src="resources/img/wordcloud2.png" width="80%" height="100%" style="margin-bottom: 20px;
-                             margin-top: 20px;margin-left: 5px;margin-right: 5px;vertical-align: middle;"></img>
+         	<img src="resources/img/wordcloud2.png" width="80%" height="100%" style="margin-bottom: 20px;
+                 margin-top: 20px;margin-left: 5px;margin-right: 5px;vertical-align: middle;"></img>
            
 <!-- MeliDatos -->
 <!--  script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -261,7 +214,7 @@ i.linkin,   span.linkin{ color: #007bb6; }
   
                                 
         <div id="footer">
-            <p>2014 © MeliDatos</p>
+            <p>2015 © MeliDatos</p>
         </div>
         <!-- END FOOTER -->
   
