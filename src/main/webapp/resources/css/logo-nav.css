@@ -1,0 +1,136 @@
+/*!
+ * Start Bootstrap - Logo Nav HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    padding-top: 50%; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    background: url(../css/bg.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 60px;
+}
+
+.navbar {
+    background-color: #f09600;
+    border-color: #825817;
+}
+
+.navbar .nav > li > a {
+    color:  #434343;
+}
+
+.navbar .nav > li > a:hover {
+    color:  #222222;
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 8px 15px;
+    height: 100%;
+    width: auto;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 15%; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+    
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+.navbar-toggle {
+    margin-top: 15px;
+}
+
+
+/* ------ index md search */
+
+.mdsearch {
+    display: table;
+    width: 100%;
+    height: 30%; /* set a pixel height and then remove the body,html height */
+    vertical-align: middle;
+    color: #fff;
+}
+.mdsearch-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+.mdsearch .search {
+    padding: 3%;
+    max-width: 980px; /*max width of search*/
+    margin: 0 auto;
+}
+.no-margin-top {
+    margin-top: 0
+}
+
+
+/* ------ form-control-lg */
+
+.form-control-lg {
+    min-height: 46px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: normal;
+}
+
+
+/* ------ disjointed form group custom */
+
+.mdsearch .search.has-button .btn {
+    margin-top: 5px;
+    width: 100%;
+}
+@media (min-width:480px) { 
+    .mdsearch .search.has-button .form-group {
+        position: relative;
+        padding-right: 99px; /*space for button*/
+    }
+    .mdsearch .search.has-button .btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: auto;
+        margin: 0;
+    }
+}
+
+
+/* ------ form focus color */
+
+.form-control:focus {
+  border-color: #f09600;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+
+/* ------ footer text */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align:center;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+.footer a {
+  color: #f09600;
+}
