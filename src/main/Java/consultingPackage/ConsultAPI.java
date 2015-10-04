@@ -13,8 +13,6 @@ import org.json.simple.parser.ParseException;
 
 import wrapperPackage.WrapperItems;
 
-
-
 import com.mercadolibre.sdk.Meli;
 import com.mercadolibre.sdk.MeliException;
 import com.ning.http.client.FluentStringsMap;
@@ -83,19 +81,19 @@ public class ConsultAPI {
 	}
 	
 	//Function will recebe an array with the countries
-	public ArrayList getRootCategories(String[] countries){
+	public JSONArray getRootCategories(String[] countries){
 		Response response;
-		ArrayList categoriesJsonArray = null;
-
+		JSONArray categoriesJsonArray = new JSONArray();
 		try {
 			for(int i=0;i<countries.length;i++){
 				response = m.get("/sites/"+countries[i]+"/categories");
 				JSONParser parser = new JSONParser();
-				Object obj = parser.parse(response.getResponseBody());
-				categoriesJsonArray.addAll((ArrayList) obj);
-				
-				//Ver de aca que pasa -> como concatenar los arreglos
-				System.out.println(categoriesJsonArray);
+				JSONArray obj = (JSONArray) parser.parse(response.getResponseBody());
+
+				for (int j=0;j<obj.size();j++) {
+					categoriesJsonArray.add(obj.get(j));
+				}
+
 			}
 		} catch (MeliException e) {
 			// TODO Auto-generated catch block
@@ -121,14 +119,22 @@ public class ConsultAPI {
 			params.add("limit", String.valueOf(limit));
 			params.add("offset", "0");
 			params.add("sort", "price_desc");
-			response = m.get("/sites/MLA/search", params);//parametro de pais
+			if(categoryId.contains("MLA")){
+				System.out.println("MLA");
+				response = m.get("/sites/MLA/search", params);//parametro de pais
+			}else if(categoryId.contains("MLB")){
+				System.out.println("MLB");
+				response = m.get("/sites/MLB/search", params);//parametro de pais
+			}else{
+				System.out.println("MLC");
+				response = m.get("/sites/MLC/search", params);//parametro de pais
+			}
 			
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(response.getResponseBody());
 			JSONObject itemsJsonObject = (JSONObject) obj;
-			System.out.println(obj.toString());
+			//System.out.println(obj.toString());
 			wrapperItems = new WrapperItems(itemsJsonObject);
-			
 			
 		} catch (MeliException e) {
 			// TODO Auto-generated catch block

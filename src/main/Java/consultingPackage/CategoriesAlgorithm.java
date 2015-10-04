@@ -50,9 +50,8 @@ public class CategoriesAlgorithm extends TimerTask{
 		
 		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
 		
-		System.out.println(categoriesJsonArray);
+		//System.out.println(categoriesJsonArray);
 		
-		/*
 		Iterator<String> iterator = categoriesJsonArray.iterator();
 		int i = 0;
 		
@@ -61,7 +60,7 @@ public class CategoriesAlgorithm extends TimerTask{
 			while(iterator.hasNext()){
 				iterator.next();
 				Thread thread = new Thread(new Category((JSONObject) categoriesJsonArray.get(i)));
-				System.out.println("Categorie: " + ((JSONObject) categoriesJsonArray.get(i)).get("id"));
+				//System.out.println("Categorie: " + ((JSONObject) categoriesJsonArray.get(i)).get("id"));
 				threads[i] = thread;
 				i++;
 			}
@@ -73,7 +72,7 @@ public class CategoriesAlgorithm extends TimerTask{
 				for(int j=0;j<categoriesAllowed.toArray().length;j++){
 					if(((JSONObject) categoriesJsonArray.get(i)).get("id").equals(((JSONObject) categoriesAllowed.get(j)).get("id"))){
 						Thread thread = new Thread(new Category((JSONObject) categoriesJsonArray.get(i)));
-						System.out.println("Categorie: " + ((JSONObject) categoriesJsonArray.get(i)).get("id"));
+						//System.out.println("Categorie: " + ((JSONObject) categoriesJsonArray.get(i)).get("id"));
 						threads[k] = thread;
 						k++;
 					}
@@ -98,7 +97,7 @@ public class CategoriesAlgorithm extends TimerTask{
 			
 		date = new Date();
 		System.out.println("Termino de proceso: " + hourFormat.format(date));
-		*/
+		
 	}
 	
 	public class Category extends Thread{
@@ -121,7 +120,7 @@ public class CategoriesAlgorithm extends TimerTask{
 		}
 		
 		public void run(){
-			System.out.println("CategoriaId: " + jsonObject.get("id") + " ,Nombre: " + jsonObject.get("name"));
+			//System.out.println("CategoriaId: " + jsonObject.get("id") + " ,Nombre: " + jsonObject.get("name"));
 			
 			fifoFathers.push((String) jsonObject.get("id"));
 			
@@ -142,7 +141,7 @@ public class CategoriesAlgorithm extends TimerTask{
 				e.printStackTrace();
 			}
 			
-		    System.out.println(Thread.currentThread().getId() + " -> closed");
+		    //System.out.println(Thread.currentThread().getId() + " -> closed");
 			Thread.currentThread().interrupt();
 			return;
 		}
@@ -187,7 +186,6 @@ public class CategoriesAlgorithm extends TimerTask{
 			boolean isLeaf;
 			
 			for(int j = 0;j<fifoRelationship.size();j++){
-				
 				isLeaf = false;
 				//Indicate if the children in this relationship is a leaf
 				if(fifoLeafs.contains(fifoRelationship.get(j)[0])){
@@ -197,8 +195,6 @@ public class CategoriesAlgorithm extends TimerTask{
 				DAORecords_MySQL daoRecords = DAORecords_MySQL.getInstance();
 				daoRecords.insertRelationship(fifoRelationship.get(j)[0], fifoRelationship.get(j)[1], fifoRelationship.get(j)[2], fifoRelationship.get(j)[3], isLeaf);
 			}
-			
-			
 		}
 		
 		public class Items extends Thread{
@@ -269,8 +265,37 @@ public class CategoriesAlgorithm extends TimerTask{
 				statesQuantitys[21][0] = "San Luis";			statesQuantitys[21][1] = "0";	statesQuantitys[21][2] = "0";	statesQuantitys[21][3] = "0";	statesQuantitys[21][4] = "0";
 				statesQuantitys[22][0] = "Santa cruz";			statesQuantitys[22][1] = "0";	statesQuantitys[22][2] = "0";	statesQuantitys[22][3] = "0";	statesQuantitys[22][4] = "0";
 				statesQuantitys[23][0] = "Capital Federal";		statesQuantitys[23][1] = "0";	statesQuantitys[23][2] = "0";	statesQuantitys[23][3] = "0";	statesQuantitys[23][4] = "0";
-				statesQuantitys[24][0] = "Otro";		        statesQuantitys[24][1] = "0";	statesQuantitys[24][2] = "0";	statesQuantitys[24][3] = "0";	statesQuantitys[24][4] = "0";
 				
+				//Brasil
+				statesQuantitys[24][0] = "Acre";				statesQuantitys[24][1] = "0";	statesQuantitys[24][2] = "0";	statesQuantitys[24][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[25][0] = "Alagoas"; 			statesQuantitys[25][1] = "0";	statesQuantitys[25][2] = "0";	statesQuantitys[25][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[26][0] = "Amapá";				statesQuantitys[26][1] = "0";	statesQuantitys[26][2] = "0";	statesQuantitys[26][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[27][0] = "Amazonas";			statesQuantitys[27][1] = "0";	statesQuantitys[27][2] = "0";	statesQuantitys[27][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[28][0] = "Bahia";				statesQuantitys[28][1] = "0";	statesQuantitys[28][2] = "0";	statesQuantitys[28][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[29][0] = "Ceará";				statesQuantitys[29][1] = "0";	statesQuantitys[29][2] = "0";	statesQuantitys[29][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[30][0] = "Distrito Federal";	statesQuantitys[30][1] = "0";	statesQuantitys[30][2] = "0";	statesQuantitys[30][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[31][0] = "Espirito Santo";		statesQuantitys[31][1] = "0";	statesQuantitys[31][2] = "0";	statesQuantitys[31][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[32][0] = "Goiás";				statesQuantitys[32][1] = "0";	statesQuantitys[32][2] = "0";	statesQuantitys[32][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[33][0] = "Maranhão";			statesQuantitys[33][1] = "0";	statesQuantitys[33][2] = "0";	statesQuantitys[33][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[34][0] = "Mato Grosso do Sul";	statesQuantitys[34][1] = "0";	statesQuantitys[34][2] = "0";	statesQuantitys[34][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[35][0] = "Minas Gerais";		statesQuantitys[35][1] = "0";	statesQuantitys[35][2] = "0";	statesQuantitys[35][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[36][0] = "Paraná";				statesQuantitys[36][1] = "0";	statesQuantitys[36][2] = "0";	statesQuantitys[36][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[37][0] = "Paraiba";				statesQuantitys[37][1] = "0";	statesQuantitys[37][2] = "0";	statesQuantitys[37][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[38][0] = "Pará";				statesQuantitys[38][1] = "0";	statesQuantitys[38][2] = "0";	statesQuantitys[38][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[39][0] = "Pernambuco";			statesQuantitys[39][1] = "0";	statesQuantitys[39][2] = "0";	statesQuantitys[39][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[40][0] = "Piauí";				statesQuantitys[40][1] = "0";	statesQuantitys[40][2] = "0";	statesQuantitys[40][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[41][0] = "Rio Grande do Norte";	statesQuantitys[41][1] = "0";	statesQuantitys[41][2] = "0";	statesQuantitys[41][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[42][0] = "Rio Grande do Sul";	statesQuantitys[42][1] = "0";	statesQuantitys[42][2] = "0";	statesQuantitys[42][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[43][0] = "Rio de Janeiro";		statesQuantitys[43][1] = "0";	statesQuantitys[43][2] = "0";	statesQuantitys[43][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[44][0] = "Rondônia";			statesQuantitys[44][1] = "0";	statesQuantitys[44][2] = "0";	statesQuantitys[44][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[45][0] = "Rorarima";			statesQuantitys[45][1] = "0";	statesQuantitys[45][2] = "0";	statesQuantitys[45][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[46][0] = "Santa Catarina";		statesQuantitys[46][1] = "0";	statesQuantitys[46][2] = "0";	statesQuantitys[46][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[47][0] = "Sergipe";				statesQuantitys[47][1] = "0";	statesQuantitys[47][2] = "0";	statesQuantitys[47][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[48][0] = "São Paulo";			statesQuantitys[48][1] = "0";	statesQuantitys[48][2] = "0";	statesQuantitys[48][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[49][0] = "Tocantins";			statesQuantitys[49][1] = "0";	statesQuantitys[49][2] = "0";	statesQuantitys[49][3] = "0";	statesQuantitys[23][4] = "0";
+				
+				
+				statesQuantitys[24][0] = "Otro";		        statesQuantitys[24][1] = "0";	statesQuantitys[24][2] = "0";	statesQuantitys[24][3] = "0";	statesQuantitys[24][4] = "0";
 				
 				//Create a stack to store the stopdates and quantitys of items.
 				//stopQuantitys[Date, StopQuantity]
@@ -506,7 +531,6 @@ public class CategoriesAlgorithm extends TimerTask{
 						
 						publicationsData.push(new String[]{items.getResults()[i].getTitle(),items.getResults()[i].getPermalink(), String.valueOf(items.getResults()[i].getPrice())});
 					}
-					
 					
 				}
 			

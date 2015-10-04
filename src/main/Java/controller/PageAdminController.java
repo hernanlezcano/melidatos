@@ -66,22 +66,10 @@ public class PageAdminController extends HttpServlet{
 			return "pageAdminLogin";
 		}
 		String [] countries = {"MLA","MLB","MLC"};
-		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
+		JSONArray categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
 		System.out.println(categoriesJsonArray);
 		
-		JSONArray arreglo = (JSONArray) categoriesJsonArray;
-		
-//		JSONObject obj;
-//		JSONArray list = new JSONArray();
-//		
-//		for (int i=0; i<categoriesJsonArray.size();i++){
-//			obj = new JSONObject();
-//			obj.put("father", String.valueOf(suggestions.get(i)[0]));
-//			obj.put("product", String.valueOf(suggestions.get(i)[1]));
-//			obj.put("key", String.valueOf(suggestions.get(i)[2]));
-//			list.add(obj);
-//			
-//		}
+		JSONArray arreglo = categoriesJsonArray;
 		
 		request.setAttribute("categories",arreglo.toJSONString());
 		
