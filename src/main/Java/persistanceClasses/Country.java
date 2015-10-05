@@ -57,7 +57,7 @@ public class Country implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-	public Set getStates() {
+	public Set <State> getStates() {
 		return this.states;
 	}
 

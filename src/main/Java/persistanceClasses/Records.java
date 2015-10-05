@@ -26,12 +26,12 @@ public class Records implements java.io.Serializable {
 	private String descProduct;
 	private Date dateRecord;
 	private double sampleSize;
-	private Set itemsquantityses = new HashSet(0);
-	private Set statesdatas = new HashSet(0);
-	private Set publicationses = new HashSet(0);
-	private Set mercadopagos = new HashSet(0);
-	private Set itempriceses = new HashSet(0);
-	private Set datestopquantityses = new HashSet(0);
+	private Set <Itemsquantitys> itemsquantityses = new HashSet(0);
+	private Set <Statesdata>statesdatas = new HashSet(0);
+	private Set <Publications>publicationses = new HashSet(0);
+	private Set <Mercadopago>mercadopagos = new HashSet(0);
+	private Set <Itemprices>itempriceses = new HashSet(0);
+	private Set <Datestopquantitys>datestopquantityses = new HashSet(0);
 
 	public Records() {
 	}
@@ -109,56 +109,56 @@ public class Records implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getItemsquantityses() {
+	public Set <Itemsquantitys> getItemsquantityses() {
 		return this.itemsquantityses;
 	}
 
-	public void setItemsquantityses(Set itemsquantityses) {
+	public void setItemsquantityses(Set <Itemsquantitys> itemsquantityses) {
 		this.itemsquantityses = itemsquantityses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getStatesdatas() {
+	public Set <Statesdata> getStatesdatas() {
 		return this.statesdatas;
 	}
 
-	public void setStatesdatas(Set statesdatas) {
+	public void setStatesdatas(Set <Statesdata> statesdatas) {
 		this.statesdatas = statesdatas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getPublicationses() {
+	public Set <Publications> getPublicationses() {
 		return this.publicationses;
 	}
 
-	public void setPublicationses(Set publicationses) {
+	public void setPublicationses(Set <Publications> publicationses) {
 		this.publicationses = publicationses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getMercadopagos() {
+	public Set <Mercadopago> getMercadopagos() {
 		return this.mercadopagos;
 	}
 
-	public void setMercadopagos(Set mercadopagos) {
+	public void setMercadopagos(Set <Mercadopago> mercadopagos) {
 		this.mercadopagos = mercadopagos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getItempriceses() {
+	public Set <Itemprices> getItempriceses() {
 		return this.itempriceses;
 	}
 
-	public void setItempriceses(Set itempriceses) {
+	public void setItempriceses(Set <Itemprices> itempriceses) {
 		this.itempriceses = itempriceses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set getDatestopquantityses() {
+	public Set <Datestopquantitys> getDatestopquantityses() {
 		return this.datestopquantityses;
 	}
 
-	public void setDatestopquantityses(Set datestopquantityses) {
+	public void setDatestopquantityses(Set <Datestopquantitys> datestopquantityses) {
 		this.datestopquantityses = datestopquantityses;
 	}
 

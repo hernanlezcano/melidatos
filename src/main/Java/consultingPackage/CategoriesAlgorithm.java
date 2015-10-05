@@ -269,7 +269,7 @@ public class CategoriesAlgorithm extends TimerTask{
 				
 				//Brasil
 				statesQuantitys[24][0] = "BR-AC";		statesQuantitys[24][1] = "0";	statesQuantitys[24][2] = "0";	statesQuantitys[24][3] = "0";	statesQuantitys[24][4] = "0";
-				statesQuantitys[25][0] = "BS-AL"; 		statesQuantitys[25][1] = "0";	statesQuantitys[25][2] = "0";	statesQuantitys[25][3] = "0";	statesQuantitys[25][4] = "0";
+				statesQuantitys[25][0] = "BR-AL"; 		statesQuantitys[25][1] = "0";	statesQuantitys[25][2] = "0";	statesQuantitys[25][3] = "0";	statesQuantitys[25][4] = "0";
 				statesQuantitys[26][0] = "BR-AP";		statesQuantitys[26][1] = "0";	statesQuantitys[26][2] = "0";	statesQuantitys[26][3] = "0";	statesQuantitys[26][4] = "0";
 				statesQuantitys[27][0] = "BR-AM";		statesQuantitys[27][1] = "0";	statesQuantitys[27][2] = "0";	statesQuantitys[27][3] = "0";	statesQuantitys[27][4] = "0";
 				statesQuantitys[28][0] = "BR-BA";		statesQuantitys[28][1] = "0";	statesQuantitys[28][2] = "0";	statesQuantitys[28][3] = "0";	statesQuantitys[28][4] = "0";

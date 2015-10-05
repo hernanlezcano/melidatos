@@ -8,14 +8,85 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>MeliDatos | Estadistica de MercadoLibre</title>
+    <title>MeliDatos | Estad�sticas de MercadoLibre</title>
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="resources/css/logo-nav.css" rel="stylesheet">
-
+	<script src="resources/js/jquery.js"></script>
+	<script src="resources/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+     	
+     	 window.onload = function(){
+         	document.onkeydown = deleteInfo;
+         };
+         function deleteInfo(elEvento){
+         	var evento = window.event|| elEvento;
+         	console.log(evento.keyCode);
+         	if (evento.keyCode == 46){
+         		document.getElementById("project").value = "";
+         		document.getElementById("project-id").value = "";
+         		
+         	}
+         }
+     	</script>
+	
+	<script type="text/javascript">		
+	
+		$(document).ready(function() {
+			 function split( val ) {
+			      return val.split( /,\s*/ );
+			    }
+			    function extractLast( term ) {
+			      return split( term ).pop();
+			    }
+                $(function() {
+                        $("#project").autocomplete({                    
+                        source : function(request, response) {
+                        $.ajax({
+                                url : "autosuggest",
+                                type : "POST",
+                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value,
+                                dataType : "json",
+                                success : function(data) {
+                                    console.log (data[0].father);    
+                                	response(data);                                		
+                                						 }
+                        	   });                        
+                											},
+               			 focus: function( event, ui ) {
+                  		  //$( "#project" ).val( ui.item.father );
+                  		  return false;
+                 		 },
+                        minLength: 2,
+                        select: function( event, ui ) {
+                        	var terms = split( this.value );
+                        	console.log(this.value);
+                            // remove the current input
+                            terms.pop();
+                            // add the selected item
+                            terms.push( ui.item.father );
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push( "" );
+                            this.value = terms.join(", ");
+                            
+                            //$( "#project" ).val( ui.item.father);
+                            $( "#project-id" ).val( ui.item.key);
+                            
+                            return false;
+                          }                        
+                        
+        			}).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                       return $( "<li>" )
+                      .append( "<a>" + item.father  + "</a>" )
+                      .appendTo( ul );
+                          };
+        
+        });
+        });
+		  </script>
 
     
 </head>
@@ -27,12 +98,14 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
+            	
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
                 <a class="navbar-brand" href="#">
                     <img class="img-responsive" src="resources/css/logo.png" alt="">
                 </a>
@@ -41,13 +114,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Administrador</a>
+                        <a href="pageAdminHistory"><span class="glyphicon glyphicon-user"></span> Administrador</a>
                     </li>
                     <li>
                         <a href="#"><span class="glyphicon glyphicon-info-sign"></span> Ayuda</a>
                     </li>
                     <li>
-                        <a href="contacto.html"><span class="glyphicon glyphicon-briefcase"></span> Contacto</a>
+                        <a href="contactos.jsp"><span class="glyphicon glyphicon-briefcase"></span> Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -63,9 +136,10 @@
         <div class="mdsearch">
            <div class="mdsearch-inner text-center">
               <form role="form" class="search has-button">
-                 <h3 class="no-margin-top h1">¿Qué estás buscando?</h3>
+                 <h3 class="no-margin-top h1">�Qu&eacute est&aacutes buscando?</h3>
                  <div class="form-group">
-                    <input type="search" placeholder="Ej: iPod" class="form-control form-control-lg">
+                    <input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project">
+                    <input type="hidden" id="project-id" name="project-id">
                     <button class="btn btn-lg btn-warning" type="button">Buscar</button>
                  </div>
                  <!-- /form-group -->
@@ -80,11 +154,10 @@
     <!-- /.container -->
     
     <!-- Footer -->
-    <footer class="footer">MeliDatos © 2015 - <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hernán Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Católica de Córdoba</a></footer>
+    <footer class="footer">MeliDatos  2015 - <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hern&aacuten Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Cat&oacutelica de C&oacuterdoba</a></footer>
     <!-- /.footer -->
 
     <!-- jQuery -->
-    <script src="resources/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="resources/js/bootstrap.min.js"></script>

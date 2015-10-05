@@ -21,7 +21,7 @@ public class State implements java.io.Serializable {
 	private String idState;
 	private Country country;
 	private String descState;
-	private Set statesdatas = new HashSet(0);
+	private Set <Statesdata> statesdatas = new HashSet(0);
 
 	public State() {
 	}
@@ -69,11 +69,11 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set getStatesdatas() {
+	public Set <Statesdata> getStatesdatas() {
 		return this.statesdatas;
 	}
 
-	public void setStatesdatas(Set statesdatas) {
+	public void setStatesdatas(Set <Statesdata> statesdatas) {
 		this.statesdatas = statesdatas;
 	}
 
