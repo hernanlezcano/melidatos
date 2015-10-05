@@ -1,6 +1,4 @@
 package persistanceClasses;
-// Generated 17-feb-2014 16:29:50 by Hibernate Tools 4.0.0
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,19 +24,19 @@ public class Records implements java.io.Serializable {
 	private String productId;
 	private String descProduct;
 	private Date dateRecord;
-	private long sampleSize;
-	private Set<Statesdata> statesdatas = new HashSet<Statesdata>(0);
-	private Set<Itemsquantitys> itemsquantityses = new HashSet<Itemsquantitys>(0);
-	private Set<Publications> publicationses = new HashSet<Publications>(0);
-	private Set<Mercadopago> mercadopagos = new HashSet<Mercadopago>(0);
-	private Set<Itemprices> itempriceses = new HashSet<Itemprices>(0);
-	private Set<Datestopquantitys> datestopquantityses = new HashSet<Datestopquantitys>(0);
+	private double sampleSize;
+	private Set itemsquantityses = new HashSet(0);
+	private Set statesdatas = new HashSet(0);
+	private Set publicationses = new HashSet(0);
+	private Set mercadopagos = new HashSet(0);
+	private Set itempriceses = new HashSet(0);
+	private Set datestopquantityses = new HashSet(0);
 
 	public Records() {
 	}
 
 	public Records(String productId, String descProduct, Date dateRecord,
-			long sampleSize) {
+			double sampleSize) {
 		this.productId = productId;
 		this.descProduct = descProduct;
 		this.dateRecord = dateRecord;
@@ -46,15 +44,15 @@ public class Records implements java.io.Serializable {
 	}
 
 	public Records(String productId, String descProduct, Date dateRecord,
-			long sampleSize, Set<Statesdata> statesdatas, Set<Itemsquantitys> itemsquantityses,
-			Set<Publications> publicationses, Set<Mercadopago> mercadopagos, Set<Itemprices> itempriceses,
-			Set<Datestopquantitys> datestopquantityses) {
+			double sampleSize, Set itemsquantityses, Set statesdatas,
+			Set publicationses, Set mercadopagos, Set itempriceses,
+			Set datestopquantityses) {
 		this.productId = productId;
 		this.descProduct = descProduct;
 		this.dateRecord = dateRecord;
 		this.sampleSize = sampleSize;
-		this.statesdatas = statesdatas;
 		this.itemsquantityses = itemsquantityses;
+		this.statesdatas = statesdatas;
 		this.publicationses = publicationses;
 		this.mercadopagos = mercadopagos;
 		this.itempriceses = itempriceses;
@@ -100,66 +98,66 @@ public class Records implements java.io.Serializable {
 		this.dateRecord = dateRecord;
 	}
 
-	@Column(name = "sampleSize", nullable = false)
-	public long getSampleSize() {
+	@Column(name = "sampleSize", nullable = false, precision = 22, scale = 0)
+	public double getSampleSize() {
 		return this.sampleSize;
 	}
 
-	public void setSampleSize(long sampleSize) {
+	public void setSampleSize(double sampleSize) {
 		this.sampleSize = sampleSize;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Statesdata> getStatesdatas() {
-		return this.statesdatas;
-	}
-
-	public void setStatesdatas(Set<Statesdata> statesdatas) {
-		this.statesdatas = statesdatas;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Itemsquantitys> getItemsquantityses() {
+	public Set getItemsquantityses() {
 		return this.itemsquantityses;
 	}
 
-	public void setItemsquantityses(Set<Itemsquantitys> itemsquantityses) {
+	public void setItemsquantityses(Set itemsquantityses) {
 		this.itemsquantityses = itemsquantityses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Publications> getPublicationses() {
+	public Set getStatesdatas() {
+		return this.statesdatas;
+	}
+
+	public void setStatesdatas(Set statesdatas) {
+		this.statesdatas = statesdatas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
+	public Set getPublicationses() {
 		return this.publicationses;
 	}
 
-	public void setPublicationses(Set<Publications> publicationses) {
+	public void setPublicationses(Set publicationses) {
 		this.publicationses = publicationses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Mercadopago> getMercadopagos() {
+	public Set getMercadopagos() {
 		return this.mercadopagos;
 	}
 
-	public void setMercadopagos(Set<Mercadopago> mercadopagos) {
+	public void setMercadopagos(Set mercadopagos) {
 		this.mercadopagos = mercadopagos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Itemprices> getItempriceses() {
+	public Set getItempriceses() {
 		return this.itempriceses;
 	}
 
-	public void setItempriceses(Set<Itemprices> itempriceses) {
+	public void setItempriceses(Set itempriceses) {
 		this.itempriceses = itempriceses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "records")
-	public Set<Datestopquantitys> getDatestopquantityses() {
+	public Set getDatestopquantityses() {
 		return this.datestopquantityses;
 	}
 
-	public void setDatestopquantityses(Set<Datestopquantitys> datestopquantityses) {
+	public void setDatestopquantityses(Set datestopquantityses) {
 		this.datestopquantityses = datestopquantityses;
 	}
 

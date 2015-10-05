@@ -1,14 +1,12 @@
 package persistanceClasses;
-// Generated 17-feb-2014 16:29:50 by Hibernate Tools 4.0.0
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,31 +17,45 @@ import javax.persistence.Table;
 @Table(name = "state", catalog = "c39melidatos")
 public class State implements java.io.Serializable {
 
-	private Integer idState;
+	private String idState;
+	private Country country;
 	private String descState;
-	private Set<Statesdata> statesdatas = new HashSet<Statesdata>(0);
+	private Set statesdatas = new HashSet(0);
 
 	public State() {
 	}
 
-	public State(String descState) {
+	public State(String idState, String descState) {
+		this.idState = idState;
 		this.descState = descState;
 	}
 
-	public State(String descState, Set<Statesdata> statesdatas) {
+	public State(String idState, Country country, String descState,
+			Set statesdatas) {
+		this.idState = idState;
+		this.country = country;
 		this.descState = descState;
 		this.statesdatas = statesdatas;
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idState", unique = true, nullable = false)
-	public Integer getIdState() {
+	@Column(name = "idState", unique = true, nullable = false, length = 45)
+	public String getIdState() {
 		return this.idState;
 	}
 
-	public void setIdState(Integer idState) {
+	public void setIdState(String idState) {
 		this.idState = idState;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCountry")
+	public Country getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	@Column(name = "descState", nullable = false, length = 45)
@@ -56,11 +68,11 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Statesdata> getStatesdatas() {
+	public Set getStatesdatas() {
 		return this.statesdatas;
 	}
 
-	public void setStatesdatas(Set<Statesdata> statesdatas) {
+	public void setStatesdatas(Set statesdatas) {
 		this.statesdatas = statesdatas;
 	}
 
