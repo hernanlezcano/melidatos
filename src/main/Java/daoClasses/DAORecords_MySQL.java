@@ -60,7 +60,7 @@ public class DAORecords_MySQL{
 			Query query = session.createQuery("from State where idState = :id ");
 			query.setParameter("id", statesQuantitys[i][0]);
 			List list = query.list();
-			//System.out.println(statesQuantitys[i][0]);
+			System.out.println(statesQuantitys[i][0]);
 			State state = (State) list.get(0);
 			Statesdata statedata;
 			if(Integer.valueOf(statesQuantitys[i][4]) == 0){

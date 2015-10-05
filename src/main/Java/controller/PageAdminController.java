@@ -88,6 +88,7 @@ public class PageAdminController extends HttpServlet{
 		JSONArray categories = null;		
 		try {
 			categories = null;
+			//System.out.println("categories imprime esto: " + request.getParameter("categories"));
 			Object obj = parser.parse(request.getParameter("categories"));
 			categories = (JSONArray) obj;
 			

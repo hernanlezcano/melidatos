@@ -104,11 +104,13 @@
 				        
 					}else{
 						categories = "[";
-						for(var i=0;i<28; i++){
+						for(var i=0;i<79; i++){
 							console.log(i);
+							
 						    if(document.getElementById(i).checked){
 						    	
 						    	categories=categories+"{\"id\": " + "\"" + document.getElementById(i).value + "\"" + " },";
+						    	//console.log(categories);
 						    }
 						   
 						}
