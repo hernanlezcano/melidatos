@@ -1,4 +1,5 @@
 package persistanceClasses;
+
 // Generated 04-oct-2015 21:23:47 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
