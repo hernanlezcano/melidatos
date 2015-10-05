@@ -8,5 +8,17 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost/c39melidatos</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+    	<!--property name="show_sql">true</property-->
+        <mapping class="persistanceClasses.Users" />
+        <mapping class="persistanceClasses.Country" />
+        <mapping class="persistanceClasses.Records" />
+        <mapping class="persistanceClasses.State" />
+        <mapping class="persistanceClasses.Statesdata" />
+        <mapping class="persistanceClasses.Producttree" />
+        <mapping class="persistanceClasses.Mercadopago" />
+        <mapping class="persistanceClasses.Itemsquantitys" />
+        <mapping class="persistanceClasses.Itemprices" />
+        <mapping class="persistanceClasses.Datestopquantitys" />
+        <mapping class="persistanceClasses.Publications" />
     </session-factory>
 </hibernate-configuration>

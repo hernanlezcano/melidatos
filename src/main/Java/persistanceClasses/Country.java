@@ -22,7 +22,7 @@ public class Country implements java.io.Serializable {
 
 	private Integer idcountry;
 	private String descCountry;
-	private Set states = new HashSet(0);
+	private Set<State> states = new HashSet(0);
 
 	public Country() {
 	}
@@ -31,7 +31,7 @@ public class Country implements java.io.Serializable {
 		this.descCountry = descCountry;
 	}
 
-	public Country(String descCountry, Set states) {
+	public Country(String descCountry, Set<State> states) {
 		this.descCountry = descCountry;
 		this.states = states;
 	}
@@ -61,7 +61,7 @@ public class Country implements java.io.Serializable {
 		return this.states;
 	}
 
-	public void setStates(Set states) {
+	public void setStates(Set<State> states) {
 		this.states = states;
 	}
 
