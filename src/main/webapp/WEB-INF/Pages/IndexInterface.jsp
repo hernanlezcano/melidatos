@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>MeliDatos | Estadísticas de MercadoLibre</title>
+    <title>MeliDatos | Estadistica de MercadoLibre</title>
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
     <!-- /.container -->
     
     <!-- Footer -->
-    <footer class="footer">MeliDatos © 2015 — <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hernán Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Católica de Córdoba</a></footer>
+    <footer class="footer">MeliDatos © 2015 - <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hernán Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Católica de Córdoba</a></footer>
     <!-- /.footer -->
 
     <!-- jQuery -->
