@@ -135,15 +135,17 @@
         <!-- example 2 -->
         <div class="mdsearch">
            <div class="mdsearch-inner text-center">
-              <form role="form" class="search has-button">
-                 <h3 class="no-margin-top h1">¿Qu&eacute est&aacutes buscando?</h3>
-                 <div class="form-group">
-                    <input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project">
-                    <input type="hidden" id="project-id" name="project-id">
-                    <button class="btn btn-lg btn-warning" type="button">Buscar</button>
-                 </div>
+              <form class="search has-button" action="InformationRequest" method="get">     	
+                 		<h3 class="no-margin-top h1">¿Qu&eacute est&aacutes buscando?</h3>
+                 		<div class="form-group">
+                    	<input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project">
+                    	<input type="hidden" id="project-id" name="project-id">
+                    	<button id="searchBtn" type="submit" class="btn btn-lg btn-warning" >Buscar</button>
+                    	</div>
+              </form>     
+		</div>
                  <!-- /form-group -->
-              </form>
+              
               <!-- /.max-width on this form -->
            </div>
            <!-- /.featurette-inner -->
@@ -154,7 +156,7 @@
     <!-- /.container -->
     
     <!-- Footer -->
-    <footer class="footer">MeliDatos  2015 - <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hern&aacuten Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Cat&oacutelica de C&oacuterdoba</a></footer>
+    <footer class="footer">MeliDatos &#169 2015 &#8212 <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hern&aacuten Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Cat&oacutelica de C&oacuterdoba</a></footer>
     <!-- /.footer -->
 
     <!-- jQuery -->
