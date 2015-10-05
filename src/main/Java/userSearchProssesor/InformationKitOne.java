@@ -99,8 +99,8 @@ public class InformationKitOne {
 		}
 	}
 	private void searchProductIdByDescription(String productId){ 
-	
-		sampleSize = (long) DAOData_MySQL.getInstance().getSampleSize(productId).get(0);
+		
+		sampleSize = (long) ((Double) DAOData_MySQL.getInstance().getSampleSize(productId).get(0)).intValue();
 
 	}
 	
