@@ -143,7 +143,7 @@ public class DAOData_MySQL{
 		return list;
 	}
 	
-	public List <Object[]> getActualStatesOfferByProductId(String productId){
+	public List <Object[]> getActualStatesOfferByProductId(String productId, int paisId){
 		
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		
@@ -151,10 +151,11 @@ public class DAOData_MySQL{
 		session.beginTransaction();
 		Query query = session.createQuery("SELECT SD.state.descState, sum(SD.offerQuantity) " +
 										  "FROM Statesdata as SD INNER JOIN SD.records as R " +
-										  "WHERE R.productId = :id AND R.dateRecord IN " +
+										  "WHERE R.productId = :id AND idCountry = :pais AND R.dateRecord IN " +
 										  "(SELECT max(R.dateRecord) FROM Records as R WHERE R.productId = :id) " +
 										  "GROUP BY SD.state.descState");
 		query.setParameter("id", productId);
+		query.setParameter("pais", paisId ); 
 		List <Object[]> list = query.list();
 		
 		session.close();

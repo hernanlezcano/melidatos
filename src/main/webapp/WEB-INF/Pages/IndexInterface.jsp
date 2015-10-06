@@ -166,10 +166,11 @@
         <!-- example 2 -->
         <div class="mdsearch">
            <div class="mdsearch-inner text-center">
-              <form class="search has-button" action="InformationRequest" method="get">     	
+              <form class="search has-button" action="InformationRequest" method="get">
+              <!--<form class="main-search" action="InformationRequest" method="get"> -->     	
                  		<h3 class="no-margin-top h1">¿Qu&eacute est&aacutes buscando?</h3>
                  		<div class="form-group">
-                    	<input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project" >
+                    	<input type="text" placeholder="Ej: iPod" class="form-control form-control-lg" id="project"  name="project">
                     		<select id="comboPais" class="selectpicker" name="Pais">
                					 <option value="MLA">Argentina</option>
              				     <option value="MLB">Brasil</option>
@@ -179,7 +180,6 @@
                     	<button id="searchBtn" type="submit" class="btn btn-lg btn-warning" >Buscar</button>
                     	</div>
               </form>     
-		</div>
                  <!-- /form-group -->
               
               <!-- /.max-width on this form -->

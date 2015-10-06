@@ -111,19 +111,35 @@ public class InformationController {
 		
 		request.setAttribute("project",request.getParameter("project"));
 		request.getAttribute("project-id");
-		System.out.println("informationRequest"  + request.getParameter("project-id"));
-
-
+		request.getAttribute("project");
+		
+		
+		String pais = request.getParameter("Pais");
 		String productId = request.getParameter("project-id");
-		//sSystem.out.println("aca prineto la variable productId"  + productId);
-	
+		int paisId = 0;
+		String idMapa = null;
+		switch (pais){
+			case "MLA": paisId = 1 ;
+						idMapa = "AR";
+						break;
+			case "MLB": paisId = 2 ;
+						idMapa = "BR";
+						break;
+			case "MLC": paisId = 3 ;
+						idMapa = "CL";	
+						break;
+			
+		}
+		
+		request.setAttribute("idMapa", idMapa);
+		System.out.println(paisId);
 		if(productId == ""){
 			request.setAttribute("data",request.getParameter("project") +  "- No se ha encontrado informacion");
 			return "IndexInterface";
 		}
 		//Obtain the data of the prices kit
 		InformationKitOne informationKitOne = new InformationKitOne(productId);
-		//System.out.println("acaprineto infokitone" + informationKitOne);
+		
 		request.setAttribute("sampleSize", informationKitOne.getSampleSize());
 		
 		DecimalFormat df = new DecimalFormat("#.##");
@@ -148,7 +164,7 @@ public class InformationController {
 		
 		
 		//Obtain the data of the offer kit
-		InformationKitTwo informationKitTwo = new InformationKitTwo(productId);
+		InformationKitTwo informationKitTwo = new InformationKitTwo(productId, paisId);
 		String statesOfferString = "";
 		ArrayList  <String[]> statesOffer = informationKitTwo.getStatesOffer();
 		
