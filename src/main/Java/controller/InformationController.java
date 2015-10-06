@@ -38,15 +38,16 @@ public class InformationController {
 	
 	@RequestMapping (value="autosuggest", method = RequestMethod.POST)
 	public @ResponseBody String autosuggest(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("called w-> " + request.getParameter("word"));
-		System.out.println("called w2-> " + request.getParameter("test"));
+		//System.out.println("called w-> " + request.getParameter("word"));
+		//System.out.println("called w2-> " + request.getParameter("test"));
+		
 		JSONObject obj;
 		JSONArray list = new JSONArray();
 		//este es el que te hace la consulta, se va a userserprepareition
 		if (request.getParameter("test") == ""){
 			System.out.println("entro a test");
 		UserSearchPreparation prepare = UserSearchPreparation.getInstance();
-		List<String[]> suggestions = prepare.getSuggestions(request.getParameter("word"));
+		List<String[]> suggestions = prepare.getSuggestions(request.getParameter("word"), request.getParameter("pais"));
 		//System.out.println(request.getParameter("test"));
 				
 		for (int i=0; i<suggestions.size();i++){
@@ -114,7 +115,7 @@ public class InformationController {
 
 
 		String productId = request.getParameter("project-id");
-		System.out.println("aca prineto la variable productId"  + productId);
+		//sSystem.out.println("aca prineto la variable productId"  + productId);
 	
 		if(productId == ""){
 			request.setAttribute("data",request.getParameter("project") +  "- No se ha encontrado informacion");
@@ -122,7 +123,7 @@ public class InformationController {
 		}
 		//Obtain the data of the prices kit
 		InformationKitOne informationKitOne = new InformationKitOne(productId);
-		
+		//System.out.println("acaprineto infokitone" + informationKitOne);
 		request.setAttribute("sampleSize", informationKitOne.getSampleSize());
 		
 		DecimalFormat df = new DecimalFormat("#.##");

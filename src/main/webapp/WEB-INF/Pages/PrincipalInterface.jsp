@@ -19,8 +19,9 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
-		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
-		        
+		       	
+		    	//este no tiene drama 
+		    	var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
 		        var options = {
 		        		title: 'Precio promedio por provincia',
 		                hAxis: {title: 'Provincia', titleTextStyle: {color: 'red'}},
@@ -38,8 +39,10 @@
 			    google.setOnLoadCallback(drawMap);
 		
 			    function drawMap() {
+			    	
+			    	//PARA DIBUJAR MAPA - este tiene drama trae todos los estados
 			        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
-		
+			        console.log([<%= request.getAttribute("statesOffers") %>]);
 			        var options = {width: 556, height: 347,
 			        		colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
 			                backgroundColor: '#81d4fa',
@@ -61,6 +64,8 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE NO TIENE DRAMA
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("historyPrices") %>]);
 				
 		        var options = {
@@ -77,6 +82,8 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE TIENE DRAMA  
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
 		        
 		        var options = {

@@ -12,11 +12,41 @@
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="resources/css/bootstrap-select.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="resources/css/logo-nav.css" rel="stylesheet">
 	<script src="resources/js/jquery.js"></script>
 	<script src="resources/jquery-ui.min.js"></script>
+	
+
+	<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
+	<script>
+		$('.selectpicker').selectpicker({
+      	style: 'btn-info',
+      	size: 4
+  		});
+</script>
+
+	<script type="text/javascript">
+		function borrarInputs(){
+			$("#project").val("");
+			
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+	$(function() {
+
+		  $('.selectpicker').on('change', function(){
+			 
+			  $("#project").val("");
+			  $("#project-id").val("");
+		  });
+		  
+		});
+	</script>
+	
 	<script type="text/javascript">
      	
      	 window.onload = function(){
@@ -42,13 +72,14 @@
 			    function extractLast( term ) {
 			      return split( term ).pop();
 			    }
-                $(function() {
+                $(function() {           	
+                		
                         $("#project").autocomplete({                    
                         source : function(request, response) {
                         $.ajax({
                                 url : "autosuggest",
                                 type : "POST",
-                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value,
+                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value + "&pais=" + $('.selectpicker').selectpicker().val(),  
                                 dataType : "json",
                                 success : function(data) {
                                     console.log (data[0].father);    
@@ -138,8 +169,13 @@
               <form class="search has-button" action="InformationRequest" method="get">     	
                  		<h3 class="no-margin-top h1">¿Qu&eacute est&aacutes buscando?</h3>
                  		<div class="form-group">
-                    	<input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project">
-                    	<input type="hidden" id="project-id" name="project-id">
+                    	<input type="search" placeholder="Ej: iPod" class="form-control form-control-lg" id="project" >
+                    		<select id="comboPais" class="selectpicker" name="Pais">
+               					 <option value="MLA">Argentina</option>
+             				     <option value="MLB">Brasil</option>
+               					 <option value="MLC">Chile</option>
+                		    </select>
+                    	<input type="text" id="project-id" name="project-id" class="form-control form-control-lg" >
                     	<button id="searchBtn" type="submit" class="btn btn-lg btn-warning" >Buscar</button>
                     	</div>
               </form>     

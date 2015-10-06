@@ -60,7 +60,7 @@ public class DAOData_MySQL{
 		return list;
 	}
 	
-	public List<Object[]> getWordsSuggested(String word){
+	public List<Object[]> getWordsSuggested(String word, String pais){
 		//cuando haces el autocomplete le hace la consulta a producttree y usa este
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		// Start a transaction	
@@ -68,8 +68,9 @@ public class DAOData_MySQL{
 		//busqueda original que trae todo los item en la busqueda
 		//Query query = session.createQuery("Select descFather, descSon, idFather from Producttree GROUP BY descSon");
 		
-		Query query = session.createQuery("Select descFather, descSon, idFather from Producttree where descFather like :search GROUP BY descFather" );
+		Query query = session.createQuery("Select descFather, descSon, idFather from Producttree where descFather like :search and idFather like :search2 GROUP BY descFather" );
 		query.setParameter("search", word + "%");
+		query.setParameter("search2", pais + "%");
 		
 		List <Object[]> list = query.list();
 		session.close();

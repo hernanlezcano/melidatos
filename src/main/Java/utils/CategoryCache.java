@@ -27,8 +27,8 @@ public class CategoryCache {
 	}
 	
 	public void sotreCategory(){
-		
-		relationship = DAOData_MySQL.getInstance().getWordsSuggested("name");
+		//el name2 lo agruegue yo pero no se que hace capaz si se rompio algo es eso
+		relationship = DAOData_MySQL.getInstance().getWordsSuggested("name","name2");
 		
 //		if(relationship.contains(new String[]{(String) nameSon, (String) nameFather, (String) idSon })){
 //			//Do nothing because the element is already in the stack
