@@ -110,10 +110,12 @@ public class InformationController {
 		
 		
 		request.setAttribute("project",request.getParameter("project"));
+		request.setAttribute("id",request.getParameter("id"));
 		request.getAttribute("project-id");
 		request.getAttribute("project");
 		
-		
+		Object idControlador = request.getAttribute("id");
+		System.out.println("Aca te imprimo idControlador: " + idControlador);
 		String pais = request.getParameter("Pais");
 		String productId = request.getParameter("project-id");
 		int paisId = 0;
@@ -132,7 +134,7 @@ public class InformationController {
 		}
 		
 		request.setAttribute("idMapa", idMapa);
-		System.out.println(paisId);
+		
 		if(productId == ""){
 			request.setAttribute("data",request.getParameter("project") +  "- No se ha encontrado informacion");
 			return "IndexInterface";
@@ -174,7 +176,7 @@ public class InformationController {
 			statesOfferString+="["+ statesOffer.get(i)[0] + " , " + statesOffer.get(i)[1] + "],";
 			
 		}
-		
+		System.out.println(statesOfferString);
 		String historyOfferString = "";
 		ArrayList  <String[]> historyOffer =informationKitTwo.getHistoriesOffer();
 		
@@ -237,6 +239,9 @@ public class InformationController {
 		request.setAttribute("historySolds", historySoldsString);
 		request.setAttribute("offerSolds", historyOfferSoldsString);
 		
-		return "PrincipalInterface";
+		if(idControlador == null){
+			return "PrincipalInterface";
+		}
+		else return "nuevoPais";
 	}
 }

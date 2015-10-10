@@ -20,54 +20,7 @@
 		
 		<script type = "text/javascript">
 			
-		$(document).ready(function() {
-			  $('#nuevaBusqueda').on('submit', function(e){		
-				 
-				  $.ajax({
-			            type: 	  'GET', 
-			            url: 	  'InformationRequest', 
-			            data: 	  "project=" + document.getElementById('project').value + "&Pais=" + $('.selectpicker').selectpicker().val() + "&project-id=" +document.getElementById('project-id').value +"&id=" + 1, 
-			            dataType: 'html',
-			            encode:    true
-				  }).done(function(data) {			                           
-			       console.log(data); 	
-			       $("#nuevoPais").append("<iframe srcdoc=" + data +" width=\"100%\" height=\"1000\" ></iframe>");
-			                        });			  
-			      e.preventDefault();			    
-			      
-			});
-			  
-		});
-		</script> 
-		
-		<script>
-			$('.selectpicker').selectpicker({
-	      	style: 'btn-info',
-	      	size: 4
-	  		});
-		</script>
-		
-		
-		
-		<script type="text/javascript">
-			function borrarInputs(){
-				$("#project").val("");
-				
-			}
-		</script>
-		
 	
-		<script type="text/javascript">
-		$(function() {
-	
-			  $('.selectpicker').on('change', function(){
-				 
-				  $("#project").val("");
-				  $("#project-id").val("");
-			  });
-			  
-			});
-		</script>
 		
        	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		
@@ -304,72 +257,7 @@
 		</script>
 		
 		
-		<script type="text/javascript">		
-	
-		$(document).ready(function() {
-			 function split( val ) {
-			      return val.split( /,\s*/ );
-			    }
-			    function extractLast( term ) {
-			      return split( term ).pop();
-			    }
-                $(function() {
-                        $("#project").autocomplete({                    
-                        source : function(request, response) {
-                        $.ajax({
-                                url : "autosuggest",
-                                type : "POST",
-                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value + "&pais=" + $('.selectpicker').selectpicker().val(),
-                                dataType : "json",
-                                success : function(data) {
-                                    console.log (data[0].father);    
-                                	response(data);                                		
-                                						 }
-                        	   });                        
-                											},
-               			 focus: function( event, ui ) {
-                  		  //$( "#project" ).val( ui.item.father );
-                  		  return false;
-                 		 },
-                        minLength: 2,
-                        select: function( event, ui ) {
-                        	var terms = split( this.value );
-                        	console.log(this.value);
-                            // remove the current input
-                            terms.pop();
-                            // add the selected item
-                            terms.push( ui.item.father );
-                            // add placeholder to get the comma-and-space at the end
-                            terms.push( "" );
-                            this.value = terms.join(", ");
-                            
-                            //$( "#project" ).val( ui.item.father);
-                            $( "#project-id" ).val( ui.item.key);
-                            
-                            return false;
-                          }                        
-                        
-        			}).autocomplete( "instance" )._renderItem = function( ul, item ) {
-                            return $( "<li>" )                            
-                            .append( "<a>" + item.father  + "</a>" )
-                            .appendTo( ul );
-                                };
-        
-        });
-        });
-		  </script>
-		  
-		 
-            <!-- Socials Buttons -->
-				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-				<style type="text/css">
-				i.fb,       span.fb{     color: #3b5998; }
-				i.tw,       span.tw{     color: #00aced; }
-				i.google,   span.google{ color: #dd4b39; }
-				i.linkin,   span.linkin{ color: #007bb6; }
-				</style> 
 		
-		 <!-- Pretty photo -->
 
 
 	</head>
@@ -391,22 +279,7 @@
                             </a>
                             <a href="<%=request.getContextPath()%>"><img src="resources/img/MeliDatos-blanco.png" /></a>
                             <!-- .topnav -->
-                            <div class="btn-toolbar topnav">
-                                <div class="btn-group">
-                                   <!-- Socials Buttons : http://ostr.io/code/html-social-like-share-buttons-no-javascript.html  -->
-                                <a class="btn btn-default" href="http://www.facebook.com/sharer.php?u=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');"> 
-                               	<i class="fa fa-thumbs-o-up fa-lg fb"></i></a>
-							    <a class="btn btn-default" href="http://twitter.com/share?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-							   	<i class="fa fa-twitter fa-lg tw"></i></a>
-							   	<a class="btn btn-default" href="https://plus.google.com/share?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-							   	<i class="fa fa-google-plus fa-lg google"></i></a>
-                                <a class="btn btn-default" href="http://www.linkedin.com/shareArticle?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-                                <i class="fa fa-linkedin fa-lg linkin"></i></a>
-                            </div>
+                           
                             <!-- /.topnav -->
                             <div class="nav-collapse collapse">
                             </div>
@@ -420,34 +293,7 @@
 
             <!-- BEGIN HEADER.head -->
            <header class="head">
-                <div class="search-bar">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="search-bar-inner">
-                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
-                                   class="accordion-toggle btn btn-inverse visible-phone"
-                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
-                                    <i class="icon-sort"></i></a>
-                                <form class="main-search" action="InformationRequest" method="get">                                    
-                                  	<input class="input-block-level" type="text" id="project" name="project" class="col-md-4">
-									<input class="input-block-level" type="text" id="project-id" name="project-id">
-									<select id="comboPais" class="selectpicker" name="Pais">
-			               					 <option value="MLA">Argentina</option>
-			             				     <option value="MLB">Brasil</option>
-			               					 <option value="MLC">Chile</option>
-                		    		</select>		                                  
-                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i></button>
-                                    
-                                </form>
-                                
-                                <form id="nuevaBusqueda" action="InformationRequest" method="get">                                  
-                                	<input id="prueba" type="submit" value="Prueba">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+               
                 <!-- ."main-bar -->
                 <div class="main-bar">
                     <div class="container-fluid">
@@ -539,10 +385,7 @@
                 			   <div id="ofertaDemanda" style="width: 95%; height: 100%" align="center"></div>
                 			   <div id='map_canvas'></div>
                             <!-- Fin Graficos -->
-                            	
-                            	
-                            	                          
-                            		<div id="nuevoPais">hola</div>
+                        
                             
                         </div>
                         <!-- /.inner -->
@@ -562,12 +405,6 @@
         <!-- END WRAP -->
 
         <div class="clearfix"></div>
-
-        <!-- BEGIN FOOTER -->
-        <div id="footer">
-            <p>2015 © MeliDatos</p>
-        </div>
-        <!-- END FOOTER -->
 
     </body>
 </html>

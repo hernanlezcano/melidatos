@@ -25,7 +25,7 @@
       	style: 'btn-info',
       	size: 4
   		});
-</script>
+	</script>
 
 	<script type="text/javascript">
 		function borrarInputs(){

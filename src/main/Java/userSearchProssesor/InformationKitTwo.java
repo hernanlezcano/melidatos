@@ -40,7 +40,7 @@ public class InformationKitTwo {
 		for(int i=0;i<list.size();i++){
 			
 			Object [] statesOffer = list.get(i);
-			System.out.println(statesOffer[0] + " - " + String.valueOf(statesOffer[1]) + productId);
+			System.out.println(statesOffer[0] + " - " + String.valueOf(statesOffer[1]) + " - "+ productId);
 			statesOffers.add(new String[] { "'" + statesOffer[0] + "'", String.valueOf(statesOffer[1])});
 			
 		}
