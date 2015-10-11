@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta charset="utf-8">
@@ -27,11 +26,13 @@
 			            type: 	  'GET', 
 			            url: 	  'InformationRequest', 
 			            data: 	  "project=" + document.getElementById('project').value + "&Pais=" + $('.selectpicker').selectpicker().val() + "&project-id=" +document.getElementById('project-id').value +"&id=" + 1, 
-			            dataType: 'html',
+			            dataType: 'text',
 			            encode:    true
 				  }).done(function(data) {			                           
 			       console.log(data); 	
-			       $("#nuevoPais").append("<iframe srcdoc=" + data +" width=\"100%\" height=\"1000\" ></iframe>");
+			       
+			       $('#iFrame').contents().find('html').html(data);
+			       //$("#nuevoPais").append("<iframe srcdoc="+data+" width=\"100%\" height=\"1000\" sandbox = \"allow-scripts\" scrolling=\"no\"></iframe>");
 			                        });			  
 			      e.preventDefault();			    
 			      
@@ -542,7 +543,7 @@
                             	
                             	
                             	                          
-                            		<div id="nuevoPais">hola</div>
+                            		<div id="nuevoPais"><iframe id='iFrame' width="100%" height="1000" scrolling="no"  seamless></iframe></div>
                             
                         </div>
                         <!-- /.inner -->

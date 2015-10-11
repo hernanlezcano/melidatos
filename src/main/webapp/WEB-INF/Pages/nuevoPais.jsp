@@ -38,7 +38,7 @@
 		                colors:['#0d2b26'],
 		        };
 
-		        var chart = new google.visualization.ColumnChart(document.getElementById('promedioProvincias'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('promedioProvincias2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -64,7 +64,7 @@
 			        
 			      
 		
-			        var container = document.getElementById('map_canvas');
+			        var container = document.getElementById('map_canvas2');
 			        var geochart = new google.visualization.GeoChart(container);
 			        geochart.draw(data, options);
 			    };
@@ -85,7 +85,7 @@
 		                vAxis: {title: 'Precio ($)', titleTextStyle: {color: 'red'}}
 		        };
 
-		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaPrecio'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaPrecio2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -102,7 +102,7 @@
 		        		is3D: true,
 		        };
 
-		        var chart = new google.visualization.PieChart(document.getElementById('ofertadosProvincia'));
+		        var chart = new google.visualization.PieChart(document.getElementById('ofertadosProvincia2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -119,7 +119,7 @@
 		                colors:['#a52a2a'],
 		        };
 
-		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaOferta'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaOferta2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -136,7 +136,7 @@
 		                 colors:['#597780'],
 		        };
 
-		        var chart = new google.visualization.ColumnChart(document.getElementById('bajasPorDias'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('bajasPorDias2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -149,7 +149,7 @@
 		        data.addColumn('number', 'Cantidad');
 		        data.addRows([<%= request.getAttribute("aceptsMercadoPago") %>]);
 		        
-		        var table = new google.visualization.Table(document.getElementById('mercadoPago'));
+		        var table = new google.visualization.Table(document.getElementById('mercadoPago2'));
 		        table.draw(data, {showRowNumber: false});
 		      }
     	</script>
@@ -166,7 +166,7 @@
 		                colors:['#778059'],
 		        };
 
-		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaVendidos'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('histogramaVendidos2'));
 		        chart.draw(data, options);
 		      }
     	</script>
@@ -181,7 +181,7 @@
 		        		is3D: true,
 		        };
 
-		        var chart = new google.visualization.PieChart(document.getElementById('vendidosProvincia'));
+		        var chart = new google.visualization.PieChart(document.getElementById('vendidosProvincia2'));
 		        chart.draw(data, options);
 		      }
    		</script>
@@ -197,149 +197,22 @@
 		          pointSize: 5
 		        };
 		
-		        var chart = new google.visualization.LineChart(document.getElementById('ofertaDemanda'));
+		        var chart = new google.visualization.LineChart(document.getElementById('ofertaDemanda2'));
 		        chart.draw(data, options);
 		      }
 	    </script>
 
 
-		<script type="text/javascript">
-			function changeToKitOne(){
-				document.getElementById("span1").className="active";
-				document.getElementById("span2").className="";
-				document.getElementById("span3").className="";
-				document.getElementById("ActualPricesData").style.display = "inline";
-				document.getElementById("promedioProvincias").style.display = "inline";
-				document.getElementById("histogramaPrecio").style.display = "inline";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-				document.getElementById("map_canvas").style.display = "inline";
-				
-			}
-			function changeToKitTwo(){
-				document.getElementById("span1").className="";
-				document.getElementById("span2").className="active";
-				document.getElementById("span3").className="";
-				document.getElementById("ActualPricesData").style.display = "none";
-				document.getElementById("promedioProvincias").style.display = "none";
-				document.getElementById("histogramaPrecio").style.display = "none";
-				document.getElementById("ofertadosProvincia").style.display = "inline";
-				document.getElementById("histogramaOferta").style.display = "inline";
-				document.getElementById("bajasPorDias").style.display = "inline";
-				document.getElementById("mercadoPago").style.display = "inline";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-				document.getElementById("map_canvas").style.display = "none";
-			}
-			function changeToKitThree(){
-				document.getElementById("span1").className="";
-				document.getElementById("span2").className="";
-				document.getElementById("span3").className="active";
-				document.getElementById("ActualPricesData").style.display = "none";
-				document.getElementById("promedioProvincias").style.display = "none";
-				document.getElementById("histogramaPrecio").style.display = "none";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "inline";
-				document.getElementById("vendidosProvincia").style.display = "inline";
-				document.getElementById("ofertaDemanda").style.display = "inline";
-				document.getElementById("map_canvas").style.display = "none";
-				
-			}
-		</script>
-		
+
 		
 		
 
 
 	</head>
 
-    <body  onload="changeToKitOne()">
-        <!-- BEGIN WRAP -->
-        <div id="wrap">
-
-            <!-- BEGIN TOP BAR -->
-            <div id="top">
-                <!-- .navbar -->
-                <div class="navbar navbar-inverse navbar-static-top">
-                    <div class="navbar-inner">
-                        <div class="container-fluid">
-                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </a>
-                            <a href="<%=request.getContextPath()%>"><img src="resources/img/MeliDatos-blanco.png" /></a>
-                            <!-- .topnav -->
-                           
-                            <!-- /.topnav -->
-                            <div class="nav-collapse collapse">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.navbar -->
-            </div>
-            <!-- END TOP BAR -->
-
-
-            <!-- BEGIN HEADER.head -->
-           <header class="head">
-               
-                <!-- ."main-bar -->
-                <div class="main-bar">
-                    <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span12" align="center">
-                                <h3 id="product">MeliDatos sobre: "<i><a class="iframe" target="top" href="mainpublications?var1=<%= request.getAttribute("project") %>" 
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-                                <%= request.getAttribute("project") %></a>" de <%= request.getAttribute("sampleSize") %> publicaciones</i></h3>
-                            </div>
-                        </div>
-                        <!-- /.row-fluid -->
-                    </div>
-                    <!-- /.container-fluid -->
-                </div>
-                <!-- /.main-bar -->
-            </header>
-            <!-- END HEADER.head -->
-            <!-- BEGIN LEFT  -->
-            <div id="left">
-                <!-- BEGIN MAIN NAVIGATION -->
-                <ul id="menu" class="unstyled accordion collapse in">
-                    <li onClick="changeToKitOne()" id="span1">
-                    	<a href="#"><span>Precio</span></a>
-                    </li>
-                    <li onClick="changeToKitTwo()" id="span2">
-                    	<a href="#"><span>Oferta</span></a>
-                    </li>
-					<li onClick="changeToKitThree()" id="span3">
-					<a href="#"><span>Mercado</span></a>
-					</li>
-                </ul>
-                <!-- END MAIN NAVIGATION -->
-
-            </div>
-            <!-- END LEFT -->
-
-            <!-- BEGIN MAIN CONTENT -->
-            <div id="content" align="center">
-                <!-- .outer -->
-                <div class="container-fluid outer">
-                    <div class="row-fluid">
-                        <!-- .inner -->
-                        <div class="span12 inner">
-                        
-                            <!-- Comienzo para precios -->
-                            <div id="ActualPricesData" align="center">
+    <body>
+    
+    						<div id="ActualPricesData2" align="center">
                                 <ul class="stats_box">
                                 <li>
                                     <!-- Precio Minimo -->
@@ -367,44 +240,33 @@
                             </div> <!-- Fin para precios -->
                             <!-- Inicio Graficos -->
                                <!-- KIT 1 -->
-                               <div id="histogramaPrecio" style="width: 95%; height: 100%" align="center"></div><br>
-                               <div id="promedioProvincias" style="width: 95%; height: 100%" align="center"></div><br>                         
+                               <div id="histogramaPrecio2" style="width: 95%; height: 100%" align="center"></div><br>
+                               <div id="promedioProvincias2" style="width: 95%; height: 100%" align="center"></div><br>                         
                                <!-- KIT 2 -->
                                <table>
                                <tr align="center">
-                               <td width="400"><div id="ofertadosProvincia" style="width: 400px; height: 300px"></div></td>
-                               <td width="400"><div id="mercadoPago" style="width: 100%; height: 100%"></div></td>
+                               <td width="400"><div id="ofertadosProvincia2" style="width: 400px; height: 300px"></div></td>
+                               <td width="400"><div id="mercadoPago2" style="width: 100%; height: 100%"></div></td>
                                </tr>
                                </table>
-                			   <div id="histogramaOferta" style="width: 95%; height: 100%" align="center"></div><br>
-                			   <div id="bajasPorDias" style="width: 95%; height: 100%" align="center"></div><br>
+                			   <div id="histogramaOferta2" style="width: 95%; height: 100%" align="center"></div><br>
+                			   <div id="bajasPorDias2" style="width: 95%; height: 100%" align="center"></div><br>
                 			   
                 			   <!-- KIT 3 -->
-                			   <div id="histogramaVendidos" style="width: 95%; height: 100%" align="center" ></div><br>
-                 			   <div id="vendidosProvincia" style="width: 400px; height: 400px" align="center"></div><br>
-                			   <div id="ofertaDemanda" style="width: 95%; height: 100%" align="center"></div>
-                			   <div id='map_canvas'></div>
+                			   <div id="histogramaVendidos2" style="width: 95%; height: 100%" align="center" ></div><br>
+                 			   <div id="vendidosProvincia2" style="width: 400px; height: 400px" align="center"></div><br>
+                			   <div id="ofertaDemanda2" style="width: 95%; height: 100%" align="center"></div>
+                			   <div id='map_canvas2'></div>
                             <!-- Fin Graficos -->
                         
-                            
-                        </div>
-                        <!-- /.inner -->
-                    </div>
-                    <!-- /.row-fluid -->
-                </div>
-                <!-- /.outer -->
-            </div>
-            <!-- END CONTENT -->
+   
 
 
             <!-- #push do not remove 
             <div id="push"></div>-->
             <!-- /#push -->
-        </div>
-       </div>
-        <!-- END WRAP -->
 
-        <div class="clearfix"></div>
+        <!-- END WRAP -->
 
     </body>
 </html>
