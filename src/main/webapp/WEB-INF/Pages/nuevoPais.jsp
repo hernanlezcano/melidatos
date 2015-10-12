@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>MeliDatos</title>
@@ -17,18 +15,21 @@
 		<script src="resources/jquery-ui.min.js"></script>
 		
 		<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
-		
-		<script type = "text/javascript">
-			
-	
-		
-       	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+				
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		
 		<script type="text/javascript">
-		      google.load("visualization", "1", {packages:["corechart"]});
+		function myFunction() {
+		    alert("hola bebe");
+		}
+		</script>
+		
+		<script type="text/javascript">
+		
+			  google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
-		       	
+		       	console.log("Entto ACAALSDKASKDJASKL");
 		    	//este no tiene drama 
 		    	var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
 		        var options = {
@@ -41,6 +42,7 @@
 		        var chart = new google.visualization.ColumnChart(document.getElementById('promedioProvincias2'));
 		        chart.draw(data, options);
 		      }
+	
     	</script>
 		
 		<script type="text/javascript">
@@ -258,7 +260,7 @@
                 			   <div id="ofertaDemanda2" style="width: 95%; height: 100%" align="center"></div>
                 			   <div id='map_canvas2'></div>
                             <!-- Fin Graficos -->
-                        
+                        		<div> <input type = "button" value="hola" onclick="myFunction()"></div>
    
 
 
