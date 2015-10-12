@@ -17,6 +17,7 @@
 		
 		<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
 		
+		
 		<script type = "text/javascript">
 			
 		$(document).ready(function() {
@@ -26,14 +27,15 @@
 			            type: 	  'GET', 
 			            url: 	  'InformationRequest', 
 			            data: 	  "project=" + document.getElementById('project').value + "&Pais=" + $('.selectpicker').selectpicker().val() + "&project-id=" +document.getElementById('project-id').value +"&id=" + 1, 
-			            dataType: 'text',
+			            dataType: 'html',
 			            encode:    true
 				  }).done(function(data) {			                           
 			       console.log(data); 	
-			       
-			       $('#iFrame').contents().find('html').html(data);
-			       //$("#nuevoPais").append("<iframe srcdoc="+data+" width=\"100%\" height=\"1000\" sandbox = \"allow-scripts\" scrolling=\"no\"></iframe>");
-			                        });			  
+			       			       		       
+			       $('#iFrame').contents().find("*").html(data);
+			       //$("#nuevoPais").append("<iframe srcdoc= "+data+" width=\"100%\" height=\"1000\"></iframe>");
+			                        });	
+				  
 			      e.preventDefault();			    
 			      
 			});
@@ -543,8 +545,8 @@
                             	
                             	
                             	                          
-                            		<div id="nuevoPais"><iframe id='iFrame' width="100%" height="1000" scrolling="no"  seamless></iframe></div>
-                            
+                             <div id="nuevoPais"><iframe id='iFrame' width="100%" height="1000" sandbox="allow-same-origin allow-scripts "></iframe></div> 
+                            <!--<div id="nuevoPais"></div>-->
                         </div>
                         <!-- /.inner -->
                     </div>
