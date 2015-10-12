@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,20 +6,79 @@
         <title>MeliDatos</title>
         <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap-responsive.min.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+        
         <link type="text/css" rel="stylesheet" href="resources/assets/css/style.css">
-
-		<link rel="stylesheet" href="resources/fancybox/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />	
-
+        <link href="resources/css/bootstrap-select.css" rel="stylesheet" />
+       	<link rel="stylesheet" href="resources/fancybox/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />	
         <link rel="stylesheet" href="resources/assets/css/theme.css">
-
+        <script src="resources/js/jquery.js"></script>
+		<script src="resources/jquery-ui.min.js"></script>
+		
+		<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
+		
+		<script type = "text/javascript">
+			
+		$(document).ready(function() {
+			  $('#nuevaBusqueda').on('submit', function(e){		
+				 
+				  $.ajax({
+			            type: 	  'GET', 
+			            url: 	  'InformationRequest', 
+			            data: 	  "project=" + document.getElementById('project').value + "&Pais=" + $('.selectpicker').selectpicker().val() + "&project-id=" +document.getElementById('project-id').value +"&id=" + 1, 
+			            dataType: 'text',
+			            encode:    true
+				  }).done(function(data) {			                           
+			       console.log(data); 	
+			       
+			       $('#iFrame').contents().find('html').html(data);
+			       //$("#nuevoPais").append("<iframe srcdoc="+data+" width=\"100%\" height=\"1000\" sandbox = \"allow-scripts\" scrolling=\"no\"></iframe>");
+			                        });			  
+			      e.preventDefault();			    
+			      
+			});
+			  
+		});
+		</script> 
+		
+		<script>
+			$('.selectpicker').selectpicker({
+	      	style: 'btn-info',
+	      	size: 4
+	  		});
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+			function borrarInputs(){
+				$("#project").val("");
+				
+			}
+		</script>
+		
+	
+		<script type="text/javascript">
+		$(function() {
+	
+			  $('.selectpicker').on('change', function(){
+				 
+				  $("#project").val("");
+				  $("#project-id").val("");
+			  });
+			  
+			});
+		</script>
+		
        	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		
 		<script type="text/javascript">
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
-		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
-		        
+		       	
+		    	//este no tiene drama 
+		    	var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
 		        var options = {
 		        		title: 'Precio promedio por provincia',
 		                hAxis: {title: 'Provincia', titleTextStyle: {color: 'red'}},
@@ -36,16 +94,20 @@
 		<script type="text/javascript">
 				google.load('visualization', '1', { 'packages': ['geochart'] });
 			    google.setOnLoadCallback(drawMap);
-		
+			    
 			    function drawMap() {
+			    	
+			    	//PARA DIBUJAR MAPA - este tiene drama trae todos los estados
+			    	
+			    	
 			        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
-		
+			        
 			        var options = {width: 556, height: 347,
 			        		colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
 			                backgroundColor: '#81d4fa',
 			                datalessRegionColor: '#f8bbd0',
 			                defaultColor: '#f5f5f5'};
-			        options['region'] = 'AR';
+			        options['region'] = "<%= request.getAttribute("idMapa") %>";
 			        options['resolution'] = 'provinces';
 			        
 			      
@@ -61,6 +123,8 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE NO TIENE DRAMA
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("historyPrices") %>]);
 				
 		        var options = {
@@ -77,6 +141,8 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE TIENE DRAMA  
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
 		        
 		        var options = {
@@ -200,6 +266,8 @@
 				document.getElementById("histogramaVendidos").style.display = "none";
 				document.getElementById("vendidosProvincia").style.display = "none";
 				document.getElementById("ofertaDemanda").style.display = "none";
+				document.getElementById("map_canvas").style.display = "inline";
+				
 			}
 			function changeToKitTwo(){
 				document.getElementById("span1").className="";
@@ -215,6 +283,7 @@
 				document.getElementById("histogramaVendidos").style.display = "none";
 				document.getElementById("vendidosProvincia").style.display = "none";
 				document.getElementById("ofertaDemanda").style.display = "none";
+				document.getElementById("map_canvas").style.display = "none";
 			}
 			function changeToKitThree(){
 				document.getElementById("span1").className="";
@@ -235,8 +304,7 @@
 			}
 		</script>
 		
-		<script src="resources/js/jquery.js"></script>
-		<script src="resources/jquery-ui.min.js"></script>
+		
 		<script type="text/javascript">		
 	
 		$(document).ready(function() {
@@ -252,7 +320,7 @@
                         $.ajax({
                                 url : "autosuggest",
                                 type : "POST",
-                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value,
+                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value + "&pais=" + $('.selectpicker').selectpicker().val(),
                                 dataType : "json",
                                 success : function(data) {
                                     console.log (data[0].father);    
@@ -292,6 +360,7 @@
         });
 		  </script>
 		  
+		 
             <!-- Socials Buttons -->
 				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 				<style type="text/css">
@@ -306,7 +375,7 @@
 
 	</head>
 
-    <body onload="changeToKitOne()">
+    <body  onload="changeToKitOne()">
         <!-- BEGIN WRAP -->
         <div id="wrap">
 
@@ -351,7 +420,7 @@
 
 
             <!-- BEGIN HEADER.head -->
-            <header class="head">
+           <header class="head">
                 <div class="search-bar">
                     <div class="row-fluid">
                         <div class="span12">
@@ -360,12 +429,20 @@
                                    class="accordion-toggle btn btn-inverse visible-phone"
                                    rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
                                     <i class="icon-sort"></i></a>
-                                <form class="main-search" action="InformationRequest" method="get">
-                                    
+                                <form class="main-search" action="InformationRequest" method="get">                                    
                                   	<input class="input-block-level" type="text" id="project" name="project" class="col-md-4">
-									<input class="input-block-level" type="text" id="project-id" name="project-id">		
-                                  
-                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i>                                    </button>
+									<input class="input-block-level" type="text" id="project-id" name="project-id">
+									<select id="comboPais" class="selectpicker" name="Pais">
+			               					 <option value="MLA">Argentina</option>
+			             				     <option value="MLB">Brasil</option>
+			               					 <option value="MLC">Chile</option>
+                		    		</select>		                                  
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i></button>
+                                    
+                                </form>
+                                
+                                <form id="nuevaBusqueda" action="InformationRequest" method="get">                                  
+                                	<input id="prueba" type="submit" value="Prueba">
                                 </form>
                             </div>
                         </div>
@@ -448,7 +525,7 @@
                                <div id="histogramaPrecio" style="width: 95%; height: 100%" align="center"></div><br>
                                <div id="promedioProvincias" style="width: 95%; height: 100%" align="center"></div><br>                         
                                <!-- KIT 2 -->
-                               <table cellpadding="20px">
+                               <table>
                                <tr align="center">
                                <td width="400"><div id="ofertadosProvincia" style="width: 400px; height: 300px"></div></td>
                                <td width="400"><div id="mercadoPago" style="width: 100%; height: 100%"></div></td>
@@ -463,6 +540,10 @@
                 			   <div id="ofertaDemanda" style="width: 95%; height: 100%" align="center"></div>
                 			   <div id='map_canvas'></div>
                             <!-- Fin Graficos -->
+                            	
+                            	
+                            	                          
+                            		<div id="nuevoPais"><iframe id='iFrame' width="100%" height="1000" scrolling="no"  seamless></iframe></div>
                             
                         </div>
                         <!-- /.inner -->
@@ -478,6 +559,7 @@
             <div id="push"></div>-->
             <!-- /#push -->
         </div>
+       </div>
         <!-- END WRAP -->
 
         <div class="clearfix"></div>

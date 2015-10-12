@@ -26,8 +26,8 @@ public class UserSearchPreparation {
 
 	}
 	
-	public List <String[]> getSuggestions(String word){
-		List<Object[]> list = DAOData_MySQL.getInstance().getWordsSuggested(word);
+	public List <String[]> getSuggestions(String word, String pais){
+		List<Object[]> list = DAOData_MySQL.getInstance().getWordsSuggested(word, pais);
 		ArrayList <String[]> suggestions = new ArrayList<String[]>();
 		
 		for(int i=0; i<list.size();i++){

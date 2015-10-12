@@ -27,11 +27,9 @@
 		<link rel="stylesheet" href="resources/themes/css/w8-responsive.min.css" />
 		<link rel="stylesheet" href="resources/themes/css/w8-skins.min.css" />
 		
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="resources/jquery-ui.css" />
+  		<script src="resources/js/jquery.js"></script>
+		<script src="resources/jquery-ui.min.js"></script>
 		<script type="text/javascript">
 		function showCategories(){
 			var obj = <%= request.getAttribute("categories") %>;
