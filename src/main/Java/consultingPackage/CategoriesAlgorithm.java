@@ -253,7 +253,7 @@ public class CategoriesAlgorithm extends TimerTask{
 				statesQuantitys[8][0] = "AR-G";			statesQuantitys[8][1] = "0";	statesQuantitys[8][2] = "0";	statesQuantitys[8][3] = "0";	statesQuantitys[8][4] = "0";
 				statesQuantitys[9][0] = "AR-P";			statesQuantitys[9][1] = "0";	statesQuantitys[9][2] = "0";	statesQuantitys[9][3] = "0";	statesQuantitys[9][4] = "0";
 				statesQuantitys[10][0] = "AR-S";		statesQuantitys[10][1] = "0";	statesQuantitys[10][2] = "0";	statesQuantitys[10][3] = "0";	statesQuantitys[10][4] = "0";
-				statesQuantitys[11][0] = "AR-K";		statesQuantitys[11][1] = "0";	statesQuantitys[11][2] = "0";	statesQuantitys[11][3] = "0";	statesQuantitys[11][4] = "0";
+				statesQuantitys[11][0] = "AR-X";		statesQuantitys[11][1] = "0";	statesQuantitys[11][2] = "0";	statesQuantitys[11][3] = "0";	statesQuantitys[11][4] = "0";
 				statesQuantitys[12][0] = "AR-L";		statesQuantitys[12][1] = "0";	statesQuantitys[12][2] = "0";	statesQuantitys[12][3] = "0";	statesQuantitys[12][4] = "0";
 				statesQuantitys[13][0] = "AR-V";		statesQuantitys[13][1] = "0";	statesQuantitys[13][2] = "0";	statesQuantitys[13][3] = "0";	statesQuantitys[13][4] = "0";
 				statesQuantitys[14][0] = "AR-U";		statesQuantitys[14][1] = "0";	statesQuantitys[14][2] = "0";	statesQuantitys[14][3] = "0";	statesQuantitys[14][4] = "0";
@@ -265,7 +265,7 @@ public class CategoriesAlgorithm extends TimerTask{
 				statesQuantitys[20][0] = "AR-J";		statesQuantitys[20][1] = "0";	statesQuantitys[20][2] = "0";	statesQuantitys[20][3] = "0";	statesQuantitys[20][4] = "0";
 				statesQuantitys[21][0] = "AR-D";		statesQuantitys[21][1] = "0";	statesQuantitys[21][2] = "0";	statesQuantitys[21][3] = "0";	statesQuantitys[21][4] = "0";
 				statesQuantitys[22][0] = "AR-Z";		statesQuantitys[22][1] = "0";	statesQuantitys[22][2] = "0";	statesQuantitys[22][3] = "0";	statesQuantitys[22][4] = "0";
-				statesQuantitys[23][0] = "AR-C";		statesQuantitys[23][1] = "0";	statesQuantitys[23][2] = "0";	statesQuantitys[23][3] = "0";	statesQuantitys[23][4] = "0";
+				statesQuantitys[23][0] = "AR-A";		statesQuantitys[23][1] = "0";	statesQuantitys[23][2] = "0";	statesQuantitys[23][3] = "0";	statesQuantitys[23][4] = "0";
 				
 				//Brasil
 				statesQuantitys[24][0] = "BR-AC";		statesQuantitys[24][1] = "0";	statesQuantitys[24][2] = "0";	statesQuantitys[24][3] = "0";	statesQuantitys[24][4] = "0";
