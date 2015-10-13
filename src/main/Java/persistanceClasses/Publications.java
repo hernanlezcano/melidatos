@@ -1,5 +1,4 @@
 package persistanceClasses;
-// Generated 17-feb-2014 16:29:50 by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "publications", catalog = "c39melidatos")
 public class Publications implements java.io.Serializable {
 
-	private Long idPublications;
+	private Long idPublication;
 	private Records records;
 	private String description;
 	private String permalink;
@@ -37,13 +36,13 @@ public class Publications implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idPublications", unique = true, nullable = false)
-	public Long getIdPublications() {
-		return this.idPublications;
+	@Column(name = "idPublication", unique = true, nullable = false)
+	public Long getIdPublication() {
+		return this.idPublication;
 	}
 
-	public void setIdPublications(Long idPublications) {
-		this.idPublications = idPublications;
+	public void setIdPublication(Long idPublication) {
+		this.idPublication = idPublication;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -56,7 +55,7 @@ public class Publications implements java.io.Serializable {
 		this.records = records;
 	}
 
-	@Column(name = "description", nullable = false, length = 200)
+	@Column(name = "description", nullable = false, length = 150)
 	public String getDescription() {
 		return this.description;
 	}
@@ -74,7 +73,7 @@ public class Publications implements java.io.Serializable {
 		this.permalink = permalink;
 	}
 
-	@Column(name = "price", nullable = false)
+	@Column(name = "price", nullable = false, precision = 22, scale = 0)
 	public double getPrice() {
 		return this.price;
 	}

@@ -20,6 +20,14 @@
                 <url>https://github.com/mercadolibre/java-sdk-repo/raw/master/snapshots</url>
         </repository>
   
+  		 <repository>
+     			 <id>JBoss repository</id>
+     			 <url>http://repository.jboss.com/maven2/</url>
+   		 </repository>
+   		 
+   		 
+ 		
+
   </repositories>
 	
   <dependencies>
@@ -115,8 +123,9 @@
 		    <version>5.1.9</version>
 	 </dependency>
 	 
+
 	 
-	 
+	
   </dependencies>
    
   <distributionManagement>

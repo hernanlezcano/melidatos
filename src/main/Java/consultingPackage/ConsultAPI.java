@@ -3,6 +3,7 @@ package consultingPackage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 import org.json.simple.JSONArray;
@@ -11,7 +12,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import wrapperPackage.WrapperItems;
-
 
 import com.mercadolibre.sdk.Meli;
 import com.mercadolibre.sdk.MeliException;
@@ -76,32 +76,36 @@ public class ConsultAPI {
 			//e.printStackTrace();
 			category = null;
 		}
-		//System.out.println("Corriendo getCategoryJSON");
+		
 		return category;
 	}
 	
-	public ArrayList getRootCategories(){
+	//Function will recebe an array with the countries
+	public JSONArray getRootCategories(String[] countries){
 		Response response;
-		ArrayList categoriesJsonArray = null;
+		JSONArray categoriesJsonArray = new JSONArray();
 		try {
-			response = m.get("/sites/MLA/categories");
-			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(response.getResponseBody());
-			categoriesJsonArray = (ArrayList) obj;
+			for(int i=0;i<countries.length;i++){
+				response = m.get("/sites/"+countries[i]+"/categories");
+				JSONParser parser = new JSONParser();
+				JSONArray obj = (JSONArray) parser.parse(response.getResponseBody());
+
+				for (int j=0;j<obj.size();j++) {
+					categoriesJsonArray.add(obj.get(j));
+				}
+
+			}
 		} catch (MeliException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ParseException in root categories");
-			//e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("IOException in root categories ");
-			//e.printStackTrace();
 		}
 		
-		//System.out.println("Corriendo getRootCategoruies");
 		return categoriesJsonArray;
 	}
 	
@@ -115,14 +119,22 @@ public class ConsultAPI {
 			params.add("limit", String.valueOf(limit));
 			params.add("offset", "0");
 			params.add("sort", "price_desc");
-			response = m.get("/sites/MLA/search", params);//parametro de pais
+			if(categoryId.contains("MLA")){
+				System.out.println("MLA");
+				response = m.get("/sites/MLA/search", params);//parametro de pais
+			}else if(categoryId.contains("MLB")){
+				System.out.println("MLB");
+				response = m.get("/sites/MLB/search", params);//parametro de pais
+			}else{
+				System.out.println("MLC");
+				response = m.get("/sites/MLC/search", params);//parametro de pais
+			}
 			
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(response.getResponseBody());
 			JSONObject itemsJsonObject = (JSONObject) obj;
-			System.out.println(obj.toString());
+			//System.out.println(obj.toString());
 			wrapperItems = new WrapperItems(itemsJsonObject);
-			
 			
 		} catch (MeliException e) {
 			// TODO Auto-generated catch block

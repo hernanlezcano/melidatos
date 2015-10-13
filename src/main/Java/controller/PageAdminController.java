@@ -27,7 +27,6 @@ import consultingPackage.ConsultAPI;
 import consultingPackage.ScheduleAlgorithm;
 import contextManagement.UserSession;
 import daoClasses.DAOUsers_MySQL;
-
 import utils.Login;
 
 @Controller
@@ -66,23 +65,11 @@ public class PageAdminController extends HttpServlet{
 		if(!checkUser(request.getSession().getId())){
 			return "pageAdminLogin";
 		}
-		
-		ArrayList categoriesJsonArray = ConsultAPI.getInstance().getRootCategories();
+		String [] countries = {"MLA","MLB","MLC"};
+		JSONArray categoriesJsonArray = ConsultAPI.getInstance().getRootCategories(countries);
 		System.out.println(categoriesJsonArray);
 		
-		JSONArray arreglo = (JSONArray) categoriesJsonArray;
-		
-//		JSONObject obj;
-//		JSONArray list = new JSONArray();
-//		
-//		for (int i=0; i<categoriesJsonArray.size();i++){
-//			obj = new JSONObject();
-//			obj.put("father", String.valueOf(suggestions.get(i)[0]));
-//			obj.put("product", String.valueOf(suggestions.get(i)[1]));
-//			obj.put("key", String.valueOf(suggestions.get(i)[2]));
-//			list.add(obj);
-//			
-//		}
+		JSONArray arreglo = categoriesJsonArray;
 		
 		request.setAttribute("categories",arreglo.toJSONString());
 		
@@ -101,6 +88,7 @@ public class PageAdminController extends HttpServlet{
 		JSONArray categories = null;		
 		try {
 			categories = null;
+			//System.out.println("categories imprime esto: " + request.getParameter("categories"));
 			Object obj = parser.parse(request.getParameter("categories"));
 			categories = (JSONArray) obj;
 			

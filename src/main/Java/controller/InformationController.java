@@ -38,15 +38,16 @@ public class InformationController {
 	
 	@RequestMapping (value="autosuggest", method = RequestMethod.POST)
 	public @ResponseBody String autosuggest(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("called w-> " + request.getParameter("word"));
-		System.out.println("called w2-> " + request.getParameter("test"));
+		//System.out.println("called w-> " + request.getParameter("word"));
+		//System.out.println("called w2-> " + request.getParameter("test"));
+		
 		JSONObject obj;
 		JSONArray list = new JSONArray();
 		//este es el que te hace la consulta, se va a userserprepareition
 		if (request.getParameter("test") == ""){
 			System.out.println("entro a test");
 		UserSearchPreparation prepare = UserSearchPreparation.getInstance();
-		List<String[]> suggestions = prepare.getSuggestions(request.getParameter("word"));
+		List<String[]> suggestions = prepare.getSuggestions(request.getParameter("word"), request.getParameter("pais"));
 		//System.out.println(request.getParameter("test"));
 				
 		for (int i=0; i<suggestions.size();i++){
@@ -107,18 +108,37 @@ public class InformationController {
 	@RequestMapping (value="InformationRequest", method = RequestMethod.GET)
 	public String informationRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		request.setAttribute("search",request.getParameter("search"));
-		System.out.println("informationRequest: " + request.getParameter("search"));
-		//UserSearchPreparation prepare = new UserSearchPreparation(request.getParameter("search"));
-		UserSearchPreparation prepare = UserSearchPreparation.getInstance();
-		String productId = prepare.searchProductIdByDescription(request.getParameter("search"));
 		
-		System.out.println(productId);
-		if(productId == null){
-			request.setAttribute("data",request.getParameter("search") + " - No se ha encontrado informacion");
-			return "IndexInterface";
+		request.setAttribute("project",request.getParameter("project"));
+		request.setAttribute("id",request.getParameter("id"));
+		request.getAttribute("project-id");
+		request.getAttribute("project");
+		
+		Object idControlador = request.getAttribute("id");
+		System.out.println("Aca te imprimo idControlador: " + idControlador);
+		String pais = request.getParameter("Pais");
+		String productId = request.getParameter("project-id");
+		int paisId = 0;
+		String idMapa = null;
+		switch (pais){
+			case "MLA": paisId = 1 ;
+						idMapa = "AR";
+						break;
+			case "MLB": paisId = 2 ;
+						idMapa = "BR";
+						break;
+			case "MLC": paisId = 3 ;
+						idMapa = "CL";	
+						break;
+			
 		}
 		
+		request.setAttribute("idMapa", idMapa);
+		
+		if(productId == ""){
+			request.setAttribute("data",request.getParameter("project") +  "- No se ha encontrado informacion");
+			return "IndexInterface";
+		}
 		//Obtain the data of the prices kit
 		InformationKitOne informationKitOne = new InformationKitOne(productId);
 		
@@ -146,7 +166,7 @@ public class InformationController {
 		
 		
 		//Obtain the data of the offer kit
-		InformationKitTwo informationKitTwo = new InformationKitTwo(productId);
+		InformationKitTwo informationKitTwo = new InformationKitTwo(productId, paisId);
 		String statesOfferString = "";
 		ArrayList  <String[]> statesOffer = informationKitTwo.getStatesOffer();
 		
@@ -156,7 +176,7 @@ public class InformationController {
 			statesOfferString+="["+ statesOffer.get(i)[0] + " , " + statesOffer.get(i)[1] + "],";
 			
 		}
-		
+		System.out.println(statesOfferString);
 		String historyOfferString = "";
 		ArrayList  <String[]> historyOffer =informationKitTwo.getHistoriesOffer();
 		
@@ -219,6 +239,9 @@ public class InformationController {
 		request.setAttribute("historySolds", historySoldsString);
 		request.setAttribute("offerSolds", historyOfferSoldsString);
 		
-		return "PrincipalInterface";
+		if(idControlador == null){
+			return "PrincipalInterface";
+		}
+		else return "nuevoPais";
 	}
 }

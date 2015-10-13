@@ -14,8 +14,8 @@ public class InformationKitTwo {
 	ArrayList <String[]> dateStopQuantitys = new ArrayList();
 	ArrayList <String[]> aceptsMercadoPago = new ArrayList();
 	
-	public InformationKitTwo(String productId){
-		obtainActualStatesOffer(productId);
+	public InformationKitTwo(String productId, int paisId){
+		obtainActualStatesOffer(productId, paisId);
 		obtainHistoriesOffers(productId);
 		obtainStopDateQuantitys(productId);
 		obtainAcceptsMercado(productId);
@@ -34,13 +34,13 @@ public class InformationKitTwo {
 		return this.aceptsMercadoPago;
 	}
 	
-	private void obtainActualStatesOffer(String productId){
-		List<Object[]> list = DAOData_MySQL.getInstance().getActualStatesOfferByProductId(productId);
+	private void obtainActualStatesOffer(String productId, int paisId){
+		List<Object[]> list = DAOData_MySQL.getInstance().getActualStatesOfferByProductId(productId, paisId);
 		
 		for(int i=0;i<list.size();i++){
 			
 			Object [] statesOffer = list.get(i);
-			System.out.println(statesOffer[0] + " - " + String.valueOf(statesOffer[1]) + productId);
+			System.out.println(statesOffer[0] + " - " + String.valueOf(statesOffer[1]) + " - "+ productId);
 			statesOffers.add(new String[] { "'" + statesOffer[0] + "'", String.valueOf(statesOffer[1])});
 			
 		}

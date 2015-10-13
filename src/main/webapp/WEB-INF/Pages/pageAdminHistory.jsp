@@ -27,37 +27,63 @@
 		<link rel="stylesheet" href="resources/themes/css/w8-responsive.min.css" />
 		<link rel="stylesheet" href="resources/themes/css/w8-skins.min.css" />
 		
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="resources/jquery-ui.css" />
+  		<script src="resources/js/jquery.js"></script>
+		<script src="resources/jquery-ui.min.js"></script>
 		<script type="text/javascript">
 		function showCategories(){
 			var obj = <%= request.getAttribute("categories") %>;
 			var datos1 = "";
 			var i = 0;
-			for(i ; i < 7;i++){ 
-				datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + "</span></label></li>"; 	
+
+			for(i ; i < obj.length/4;i++){ 
+				if(obj[i].id.indexOf("MLA")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Argentina</b></span></label></li>";
+				}else if(obj[i].id.indexOf("MLB")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Brasil</b></span></label></li>";
+				}else{
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Chile</b></span></label></li>";
+				}
 			} 
 			$("#tasks1").html(datos1);
 			var datos1 = "";
-			for(i; i < 14;i++){ 
-				datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value =  '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + "</span></label></li>"; 
+			for(i; i < (obj.length/4)*2;i++){ 
+				if(obj[i].id.indexOf("MLA")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Argentina</b></span></label></li>";
+				}else if(obj[i].id.indexOf("MLB")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Brasil</b></span></label></li>";
+				}else{
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Chile</b></span></label></li>";
+				}
 			} 
 			$("#tasks2").html(datos1);
 			var datos1 = "";
-			for(i; i < 21;i++){ 
-				datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + "</span></label></li>"; 
+			for(i; i < (obj.length/4)*3;i++){ 
+				if(obj[i].id.indexOf("MLA")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Argentina</b></span></label></li>";
+				}else if(obj[i].id.indexOf("MLB")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Brasil</b></span></label></li>";
+				}else{
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Chile</b></span></label></li>";
+				}
 			} 
 			$("#tasks3").html(datos1);
 			var datos1 = "";
-			for(i; i < obj.length;i++){ 
-				datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + "</span></label></li>";
+			for(i; i < (obj.length/4)*4;i++){ 
+				if(obj[i].id.indexOf("MLA")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Argentina</b></span></label></li>";
+				}else if(obj[i].id.indexOf("MLB")>-1){
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Brasil</b></span></label></li>";
+				}else{
+					datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = " + i +" value = '" + obj[i].id +"'/><span class='lbl'>" + obj[i].name + " <br><b>Chile</b></span></label></li>";
+				}
 			} 
 			
-			datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = "+ "todos" +" value = 'todos'/><span class='lbl'>TODOS</span></label></li>";
 			$("#tasks4").html(datos1);
+			var datos1 = "";
+			
+			datos1=datos1+"<li class='item-orange'><label class='inline'><input type='checkbox' id = "+ "todos" +" value = 'todos'/><span class='lbl'>TODOS</span></label></li>";
+			$("#tasks5").html(datos1);
 		}
 		</script>
 		<script type="text/javascript">
@@ -76,11 +102,13 @@
 				        
 					}else{
 						categories = "[";
-						for(var i=0;i<28; i++){
+						for(var i=0;i<79; i++){
 							console.log(i);
+							
 						    if(document.getElementById(i).checked){
 						    	
 						    	categories=categories+"{\"id\": " + "\"" + document.getElementById(i).value + "\"" + " },";
+						    	//console.log(categories);
 						    }
 						   
 						}
@@ -309,6 +337,11 @@
 											</td>
 											<td>
 											<ul id="tasks4" class="item-list">
+													
+												</ul>
+											</td>
+											<td>
+											<ul id="tasks5" class="item-list">
 													
 												</ul>
 											</td>
