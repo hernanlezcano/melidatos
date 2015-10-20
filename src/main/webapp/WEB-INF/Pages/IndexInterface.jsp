@@ -2,60 +2,52 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>MeliDatos</title>
-        <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap.css">
-        <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap-responsive.min.css">
-        <link type="text/css" rel="stylesheet" href="resources/assets/css/style.css">
-        
-		<link rel="stylesheet" href="resources/jquery-ui.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>MeliDatos | Estadísticas de MercadoLibre</title>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+	<link href="resources/css/bootstrap-select.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="resources/css/logo-nav.css" rel="stylesheet">
+	<script src="resources/js/jquery.js"></script>
+	<script src="resources/jquery-ui.min.js"></script>
+	
 
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http: //html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if IE 7]>
-        <link type="text/css" rel="stylesheet" href="assets/Font-awesome/css/font-awesome-ie7.min.css"/>
-        <![endif]-->
-       
-       
+	<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
+	<script>
+		$('.selectpicker').selectpicker({
+      	style: 'btn-info',
+      	size: 4
+  		});
+	</script>
 
-		 <script type="text/javascript">
-		function changeToKitOne(){
-				document.getElementById("span1").className="active";
-				document.getElementById("span2").className="";
-				document.getElementById("span3").className="";
-				document.getElementById("ActualPricesData").style.display = "inline";
-				document.getElementById("histogramaPrecio").style.display = "inline";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-			}
-		function changeNone(){
-				document.getElementById("search").focus();
-				document.getElementById("span1").className=" ";
-				document.getElementById("span2").className=" ";
-				document.getElementById("span3").className=" ";
-				document.getElementById("ActualPricesData").style.display = "none";
-				document.getElementById("histogramaPrecio").style.display = "none";
-				document.getElementById("ofertadosProvincia").style.display = "none";
-				document.getElementById("histogramaOferta").style.display = "none";
-				document.getElementById("bajasPorDias").style.display = "none";
-				document.getElementById("mercadoPago").style.display = "none";
-				document.getElementById("histogramaVendidos").style.display = "none";
-				document.getElementById("vendidosProvincia").style.display = "none";
-				document.getElementById("ofertaDemanda").style.display = "none";
-			}		
-     	</script> 
-     	
-     	
-     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-     	<script type="text/javascript">
+	<script type="text/javascript">
+		function borrarInputs(){
+			$("#project").val("");
+			
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+	$(function() {
+
+		  $('.selectpicker').on('change', function(){
+			 
+			  $("#project").val("");
+			  $("#project-id").val("");
+		  });
+		  
+		});
+	</script>
+	
+	<script type="text/javascript">
      	
      	 window.onload = function(){
          	document.onkeydown = deleteInfo;
@@ -70,11 +62,8 @@
          	}
          }
      	</script>
-     	
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>		
-		<script type="text/javascript">
-		
+	
+	<script type="text/javascript">		
 	
 		$(document).ready(function() {
 			 function split( val ) {
@@ -83,13 +72,14 @@
 			    function extractLast( term ) {
 			      return split( term ).pop();
 			    }
-                $(function() {
+                $(function() {           	
+                		
                         $("#project").autocomplete({                    
                         source : function(request, response) {
                         $.ajax({
                                 url : "autosuggest",
                                 type : "POST",
-                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value,
+                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value + "&pais=" + $('.selectpicker').selectpicker().val(),  
                                 dataType : "json",
                                 success : function(data) {
                                     console.log (data[0].father);    
@@ -111,7 +101,7 @@
                             terms.push( ui.item.father );
                             // add placeholder to get the comma-and-space at the end
                             terms.push( "" );
-                            this.value = terms.join( ", " );
+                            this.value = terms.join(", ");
                             
                             //$( "#project" ).val( ui.item.father);
                             $( "#project-id" ).val( ui.item.key);
@@ -128,142 +118,95 @@
         });
         });
 		  </script>
-		 
 
-    <!-- Socials Buttons -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<style type="text/css">
-i.fb,       span.fb{     color: #3b5998; }
-i.tw,       span.tw{     color: #00aced; }
-i.google,   span.google{ color: #dd4b39; }
-i.linkin,   span.linkin{ color: #007bb6; }
-</style> 
+    
+</head>
 
-	</head>
+<body>
 
-   <!-- <body onload="changeNone()"> --> 
-   <body>
-   		<div id="project-label">Seleccione el articulo:</div>
-		<input id="project" class="col-md-4">
-		<input id="project-id">		
-		<p id="project-description"></p>
- 
-        <!-- BEGIN WRAP -->
-        <div id="wrap">
-
-
-            <!-- BEGIN TOP BAR -->
-            <div id="top">
-                <!-- .navbar -->
-                <div class="navbar navbar-inverse navbar-static-top">
-                    <div class="navbar-inner">
-                        <div class="container-fluid">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </a>
-                            <img src="resources/img/MeliDatos-blanco.png" />
-                            <!-- .topnav -->
-                          <div class="btn-toolbar topnav">
-                                <div class="btn-group">
-                                
-                                      <!-- Socials Buttons : http://ostr.io/code/html-social-like-share-buttons-no-javascript.html  -->
-                                <a class="btn btn-default" href="http://www.facebook.com/sharer.php?u=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=100%,height=100%');"> 
-                               	<i class="fa fa-thumbs-o-up fa-lg fb"></i></a>
-							    <a class="btn btn-default" href="http://twitter.com/share?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-							   	<i class="fa fa-twitter fa-lg tw"></i></a>
-							   	<a class="btn btn-default" href="https://plus.google.com/share?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-							   	<i class="fa fa-google-plus fa-lg google"></i></a>
-                                <a class="btn btn-default" href="http://www.linkedin.com/shareArticle?url=http://www.melidatos.com.ar/" target="top"
-                                onClick="window.open(this.href, this.target, 'width=550,height=415');">
-                                <i class="fa fa-linkedin fa-lg linkin"></i></a>
-                                
-                                
-                            </div>
-                            </div>
-                            <!-- /.topnav -->
-                        </div>
-                    </div>
-                </div>
-                <!-- /.navbar -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            	
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="#">
+                    <img class="img-responsive" src="resources/css/logo.png" alt="">
+                </a>
             </div>
-            <!-- END TOP BAR -->
-
-
-            <!-- BEGIN HEADER.head -->
-            <header class="head">
-
-                <!-- ."main-bar -->
-                <div class="main-bar"  style="margin-left: 40%">
-                    <div class="search-bar">
-                    <div class="row-fluid" >
-                        <div class="span12">
-                            <div class="search-bar-inner">
-                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
-                                   class="accordion-toggle btn btn-inverse visible-phone"
-                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
-                                    <i class="icon-sort"></i>                                </a>
-                                
-
-                                <form class="main-search" action="InformationRequest" method="get">
-                                
-                                    <input class="input-block-level" type="text" list="suggestions" id="search" onkeyup="suggest();" name="search"
-                                     placeholder="Buscar..." autocomplete="on">
-                                    <datalist id="suggestions" onclick="msj();">
-                                                  
-                                    </datalist>
-                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i>                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                    <!-- /.container-fluid -->
-                </div>
-                <!-- /.main-bar -->
-            </header>
-            <!-- END HEADER.head -->
-			
-			<div align="center" style="vertical-align: middle">
-                       <h3><i><%= request.getAttribute("data") %></i></h3>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="pageAdminHistory"><span class="glyphicon glyphicon-user"></span> Administrador</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-info-sign"></span> Ayuda</a>
+                    </li>
+                    <li>
+                        <a href="contactos.jsp"><span class="glyphicon glyphicon-briefcase"></span> Contacto</a>
+                    </li>
+                </ul>
             </div>
-            
-            <div align="center" style="vertical-align: middle;">
-         
-         <                     <img src="resources/img/wordcloud2.png" width="80%" height="100%" style="margin-bottom: 20px;
-                             margin-top: 20px;margin-left: 5px;margin-right: 5px;vertical-align: middle;"></img>
-           
-<!-- MeliDatos -->
-<!--  script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:inline-block;width:970px;height:90px"
-     data-ad-client="ca-pub-8876106263231512"
-     data-ad-slot="7931122587"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script-->
-                            </div>            
-
-            <!-- #push do not remove -->
-            <div id="push"></div>
-            <!-- /#push -->
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- END WRAP -->
+        <!-- /.container -->
+    </nav>
 
-        <div class="clearfix"></div>
+    <!-- Page Content -->
+    <div class="container">
+        
+        <!-- example 2 -->
+        <div class="mdsearch">
+           <div class="mdsearch-inner text-center">
+              <form class="search has-button" action="InformationRequest" method="get">
+              <!--<form class="main-search" action="InformationRequest" method="get"> -->     	
+                 		<h3 class="no-margin-top h1">¿Qu&eacute est&aacutes buscando?</h3>
+                 		<div class="form-group">
+                    	<input type="text" placeholder="Ej: iPod" class="form-control form-control-lg" id="project"  name="project">
+                    		<select id="comboPais" class="selectpicker" name="Pais">
+               					 <option value="MLA">Argentina</option>
+             				     <option value="MLB">Brasil</option>
+               					 <option value="MLC">Chile</option>
+                		    </select>
+                    	<input type="text" id="project-id" name="project-id" class="form-control form-control-lg" >
+                    	<button id="searchBtn" type="submit" class="btn btn-lg btn-warning" >Buscar</button>
+                    	</div>
+              </form>     
+                 <!-- /form-group -->
+              
+              <!-- /.max-width on this form -->
+           </div>
+           <!-- /.featurette-inner -->
 
-        <!-- BEGIN FOOTER -->
-  
-                                
-        <div id="footer">
-            <p>2014 © MeliDatos</p>
         </div>
-        <!-- END FOOTER -->
-  
-    </body>
+    
+    </div>
+    <!-- /.container -->
+    
+    <!-- Footer -->
+    <footer class="footer">MeliDatos &#169 2015 &#8212 <a href="#" title="E-mail" data-toggle="popover" data-placement="top" data-content="lezcanotasso@gmail.com">Hern&aacuten Lezcano</a> |  <a href="http://www.ucc.edu.ar" target=_blank>Universidad Cat&oacutelica de C&oacuterdoba</a></footer>
+    <!-- /.footer -->
+
+    <!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    
+    <!-- Popover -->
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+    </script>
+
+</body>
+
 </html>

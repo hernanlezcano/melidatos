@@ -1,17 +1,5 @@
 K 25
 svn:wc:ra_dav:version-url
-V 40
-/svn/!svn/ver/3/trunk/src/main/resources
-END
-hibernate.cfg.xml
-K 25
-svn:wc:ra_dav:version-url
-V 58
-/svn/!svn/ver/3/trunk/src/main/resources/hibernate.cfg.xml
-END
-hibernate.properties
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/svn/!svn/ver/3/trunk/src/main/resources/hibernate.properties
+V 35
+/svn/!svn/ver/9/trunk/src/main/Java
 END

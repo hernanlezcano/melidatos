@@ -57,10 +57,10 @@ public class DAORecords_MySQL{
 		Mercadopago mercadoPago = new Mercadopago(records, acceptsMercadoPago, noMercadoPago);
 		session.save(mercadoPago);
 		for(int i = 0;i<statesQuantitys.length;i++){ //recorre toda la matriz preguntando cada uno de los estados primero bdd para relacionar y guarda
-			Query query = session.createQuery("from State where descState = :name ");
-			query.setParameter("name", statesQuantitys[i][0]);
+			Query query = session.createQuery("from State where idState = :id ");
+			query.setParameter("id", statesQuantitys[i][0]);
 			List list = query.list();
-			//System.out.println(statesQuantitys[i][0]);
+			System.out.println(statesQuantitys[i][0]);
 			State state = (State) list.get(0);
 			Statesdata statedata;
 			if(Integer.valueOf(statesQuantitys[i][4]) == 0){

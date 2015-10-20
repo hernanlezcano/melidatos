@@ -1,5 +1,4 @@
 package persistanceClasses;
-// Generated 17-feb-2014 16:29:50 by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

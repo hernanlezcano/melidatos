@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,27 +6,81 @@
         <title>MeliDatos</title>
         <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="resources/assets/css/bootstrap-responsive.min.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+        
         <link type="text/css" rel="stylesheet" href="resources/assets/css/style.css">
-        
-
+        <link href="resources/css/bootstrap-select.css" rel="stylesheet" />
+       	<link rel="stylesheet" href="resources/fancybox/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />	
         <link rel="stylesheet" href="resources/assets/css/theme.css">
-        
-
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http: //html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if IE 7]>
-        <link type="text/css" rel="stylesheet" href="assets/Font-awesome/css/font-awesome-ie7.min.css"/>
-        <![endif]-->
-       
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script src="resources/js/jquery.js"></script>
+		<script src="resources/jquery-ui.min.js"></script>
+		
+		<script src="resources/js/bootstrap-select.js" type="text/javascript"></script>
+		
+		
+		<script type = "text/javascript">
+			
+		$(document).ready(function() {
+			  $('#nuevaBusqueda').on('submit', function(e){		
+				 
+				  $.ajax({
+			            type: 	  'GET', 
+			            url: 	  'InformationRequest', 
+			            data: 	  "project=" + document.getElementById('project').value + "&Pais=" + $('.selectpicker').selectpicker().val() + "&project-id=" +document.getElementById('project-id').value +"&id=" + 1, 
+			            dataType: 'html',
+			            encode:    true
+				  }).done(function(data) {			                           
+			       console.log(data); 	
+			       			       		       
+			       $('#iFrame').contents().find("*").html(data);
+			       //$("#nuevoPais").append("<iframe srcdoc= "+data+" width=\"100%\" height=\"1000\"></iframe>");
+			                        });	
+				  
+			      e.preventDefault();			    
+			      
+			});
+			  
+		});
+		</script> 
+		
+		<script>
+			$('.selectpicker').selectpicker({
+	      	style: 'btn-info',
+	      	size: 4
+	  		});
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+			function borrarInputs(){
+				$("#project").val("");
+				
+			}
+		</script>
+		
+	
+		<script type="text/javascript">
+		$(function() {
+	
+			  $('.selectpicker').on('change', function(){
+				 
+				  $("#project").val("");
+				  $("#project-id").val("");
+			  });
+			  
+			});
+		</script>
+		
+       	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		
 		<script type="text/javascript">
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
-		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
-		        
+		       	
+		    	//este no tiene drama 
+		    	var data = google.visualization.arrayToDataTable([<%= request.getAttribute("avgStates") %>]);
 		        var options = {
 		        		title: 'Precio promedio por provincia',
 		                hAxis: {title: 'Provincia', titleTextStyle: {color: 'red'}},
@@ -40,10 +93,40 @@
 		      }
     	</script>
 		
+		<script type="text/javascript">
+				google.load('visualization', '1', { 'packages': ['geochart'] });
+			    google.setOnLoadCallback(drawMap);
+			    
+			    function drawMap() {
+			    	
+			    	//PARA DIBUJAR MAPA - este tiene drama trae todos los estados
+			    	
+			    	
+			        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
+			        
+			        var options = {width: 556, height: 347,
+			        		colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+			                backgroundColor: '#81d4fa',
+			                datalessRegionColor: '#f8bbd0',
+			                defaultColor: '#f5f5f5'};
+			        options['region'] = "<%= request.getAttribute("idMapa") %>";
+			        options['resolution'] = 'provinces';
+			        
+			      
+		
+			        var container = document.getElementById('map_canvas');
+			        var geochart = new google.visualization.GeoChart(container);
+			        geochart.draw(data, options);
+			    };
+	    </script>		
+		
+		
     	<script type="text/javascript">
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE NO TIENE DRAMA
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("historyPrices") %>]);
 				
 		        var options = {
@@ -60,6 +143,8 @@
 		      google.load("visualization", "1", {packages:["corechart"]});
 		      google.setOnLoadCallback(drawChart);
 		      function drawChart() {
+		    	  
+		    	//ESTE TIENE DRAMA  
 		        var data = google.visualization.arrayToDataTable([<%= request.getAttribute("statesOffers") %>]);
 		        
 		        var options = {
@@ -183,6 +268,8 @@
 				document.getElementById("histogramaVendidos").style.display = "none";
 				document.getElementById("vendidosProvincia").style.display = "none";
 				document.getElementById("ofertaDemanda").style.display = "none";
+				document.getElementById("map_canvas").style.display = "inline";
+				
 			}
 			function changeToKitTwo(){
 				document.getElementById("span1").className="";
@@ -198,6 +285,7 @@
 				document.getElementById("histogramaVendidos").style.display = "none";
 				document.getElementById("vendidosProvincia").style.display = "none";
 				document.getElementById("ofertaDemanda").style.display = "none";
+				document.getElementById("map_canvas").style.display = "none";
 			}
 			function changeToKitThree(){
 				document.getElementById("span1").className="";
@@ -213,40 +301,68 @@
 				document.getElementById("histogramaVendidos").style.display = "inline";
 				document.getElementById("vendidosProvincia").style.display = "inline";
 				document.getElementById("ofertaDemanda").style.display = "inline";
+				document.getElementById("map_canvas").style.display = "none";
+				
 			}
 		</script>
 		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type="text/javascript">
-                function suggest(){
-                    console.log(document.getElementById('search').value);
-
-                    if(document.getElementById('search').value.replace(/ /g, '') == ''){return false;}
-                    $.ajax({  
-                    type : "POST",
-                    url : "autosuggest",
-                    data : "word=" + document.getElementById('search').value,
-                    
-                    success : function(response) {
-                        // we have the response
-                        var obj = JSON.parse(response);
-                        var options = '<option value="'+ obj[0].product + '" />';
-                        for(var i = 1; i < obj.length; i++)
-                            options += '<option value="'+ obj[i].product + '" />';
-                        document.getElementById('suggestions').innerHTML = options;
+		
+		<script type="text/javascript">		
+	
+		$(document).ready(function() {
+			 function split( val ) {
+			      return val.split( /,\s*/ );
+			    }
+			    function extractLast( term ) {
+			      return split( term ).pop();
+			    }
+                $(function() {
+                        $("#project").autocomplete({                    
+                        source : function(request, response) {
+                        $.ajax({
+                                url : "autosuggest",
+                                type : "POST",
+                                data : "word=" + document.getElementById('project').value + "&test=" +document.getElementById('project-id').value + "&pais=" + $('.selectpicker').selectpicker().val(),
+                                dataType : "json",
+                                success : function(data) {
+                                    console.log (data[0].father);    
+                                	response(data);                                		
+                                						 }
+                        	   });                        
+                											},
+               			 focus: function( event, ui ) {
+                  		  //$( "#project" ).val( ui.item.father );
+                  		  return false;
+                 		 },
+                        minLength: 2,
+                        select: function( event, ui ) {
+                        	var terms = split( this.value );
+                        	console.log(this.value);
+                            // remove the current input
+                            terms.pop();
+                            // add the selected item
+                            terms.push( ui.item.father );
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push( "" );
+                            this.value = terms.join(", ");
+                            
+                            //$( "#project" ).val( ui.item.father);
+                            $( "#project-id" ).val( ui.item.key);
+                            
+                            return false;
+                          }                        
                         
-                        /* var categoryOptions = '<option value="'+ obj[0].father +'" />';
-                        for(var i = 1; i < obj.length; i++)
-                            categoryOptions += '<option value="'+ obj[i].father +'" />';
-                        document.getElementById('super-category').innerHTML = categoryOptions; */
-                    },
-                    error : function(e) {
-                        
-                    }
-                    });
-
-                }
-        </script>
+        			}).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                            return $( "<li>" )                            
+                            .append( "<a>" + item.father  + "</a>" )
+                            .appendTo( ul );
+                                };
+        
+        });
+        });
+		  </script>
+		  
+		 
             <!-- Socials Buttons -->
 				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 				<style type="text/css">
@@ -257,19 +373,11 @@
 				</style> 
 		
 		 <!-- Pretty photo -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/fancybox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="resources/fancybox/fancybox/jquery.easing-1.3.pack.js"></script>
-<script type="text/javascript" src="resources/fancybox/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-<link rel="stylesheet" href="resources/fancybox/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-<script>
-$('.showDetail').fancybox({
-    type: "ajax"
-});
-</script>
+
+
 	</head>
 
-    <body onload="changeToKitOne()">
+    <body  onload="changeToKitOne()">
         <!-- BEGIN WRAP -->
         <div id="wrap">
 
@@ -314,7 +422,7 @@ $('.showDetail').fancybox({
 
 
             <!-- BEGIN HEADER.head -->
-            <header class="head">
+           <header class="head">
                 <div class="search-bar">
                     <div class="row-fluid">
                         <div class="span12">
@@ -323,12 +431,20 @@ $('.showDetail').fancybox({
                                    class="accordion-toggle btn btn-inverse visible-phone"
                                    rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
                                     <i class="icon-sort"></i></a>
-                                <form class="main-search" action="InformationRequest" method="get">
-                                    <input class="input-block-level" type="text" list="suggestions" id="search" onkeyup="suggest();" name="search" placeholder="Buscar..." autocomplete="off">
-                                    <datalist id="suggestions">
-                                                  
-                                    </datalist>
-                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i>                                    </button>
+                                <form class="main-search" action="InformationRequest" method="get">                                    
+                                  	<input class="input-block-level" type="text" id="project" name="project" class="col-md-4">
+									<input class="input-block-level" type="text" id="project-id" name="project-id">
+									<select id="comboPais" class="selectpicker" name="Pais">
+			               					 <option value="MLA">Argentina</option>
+			             				     <option value="MLB">Brasil</option>
+			               					 <option value="MLC">Chile</option>
+                		    		</select>		                                  
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse" onclick="changeToKitOne()"><i class="icon-search"></i></button>
+                                    
+                                </form>
+                                
+                                <form id="nuevaBusqueda" action="InformationRequest" method="get">                                  
+                                	<input id="prueba" type="submit" value="Prueba">
                                 </form>
                             </div>
                         </div>
@@ -340,9 +456,9 @@ $('.showDetail').fancybox({
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span12" align="center">
-                                <h3 id="product">MeliDatos sobre: "<i><a class="iframe" target="top" href="mainpublications?var1=<%= request.getAttribute("search") %>" 
+                                <h3 id="product">MeliDatos sobre: "<i><a class="iframe" target="top" href="mainpublications?var1=<%= request.getAttribute("project") %>" 
                                 onClick="window.open(this.href, this.target, 'width=550,height=415');">
-                                <%= request.getAttribute("search") %></a>" de <%= request.getAttribute("sampleSize") %> publicaciones</i></h3>
+                                <%= request.getAttribute("project") %></a>" de <%= request.getAttribute("sampleSize") %> publicaciones</i></h3>
                             </div>
                         </div>
                         <!-- /.row-fluid -->
@@ -411,7 +527,7 @@ $('.showDetail').fancybox({
                                <div id="histogramaPrecio" style="width: 95%; height: 100%" align="center"></div><br>
                                <div id="promedioProvincias" style="width: 95%; height: 100%" align="center"></div><br>                         
                                <!-- KIT 2 -->
-                               <table cellpadding="20px">
+                               <table>
                                <tr align="center">
                                <td width="400"><div id="ofertadosProvincia" style="width: 400px; height: 300px"></div></td>
                                <td width="400"><div id="mercadoPago" style="width: 100%; height: 100%"></div></td>
@@ -424,8 +540,13 @@ $('.showDetail').fancybox({
                 			   <div id="histogramaVendidos" style="width: 95%; height: 100%" align="center" ></div><br>
                  			   <div id="vendidosProvincia" style="width: 400px; height: 400px" align="center"></div><br>
                 			   <div id="ofertaDemanda" style="width: 95%; height: 100%" align="center"></div>
+                			   <div id='map_canvas'></div>
                             <!-- Fin Graficos -->
-                            
+                            	
+                            	
+                            	                          
+                             <div id="nuevoPais"><iframe id='iFrame' width="100%" height="1000" sandbox="allow-same-origin allow-scripts "></iframe></div> 
+                            <!--<div id="nuevoPais"></div>-->
                         </div>
                         <!-- /.inner -->
                     </div>
@@ -436,17 +557,18 @@ $('.showDetail').fancybox({
             <!-- END CONTENT -->
 
 
-            <!-- #push do not remove -->
-            <div id="push"></div>
+            <!-- #push do not remove 
+            <div id="push"></div>-->
             <!-- /#push -->
         </div>
+       </div>
         <!-- END WRAP -->
 
         <div class="clearfix"></div>
 
         <!-- BEGIN FOOTER -->
         <div id="footer">
-            <p>2013 © MeliDatos</p>
+            <p>2015 © MeliDatos</p>
         </div>
         <!-- END FOOTER -->
 
